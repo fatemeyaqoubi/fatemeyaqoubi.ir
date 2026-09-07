@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسابقه ریاضی شاد</title>
+<style>
+  body{
+    margin:0;
+    font-family:system-ui, -apple-system, sans-serif;
+    background:linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    direction:rtl;
+  }
+  .game-box{
+    background:#FFF;
+    border-radius:24px;
+    padding:32px;
+    box-shadow:0 12px 36px rgba(0,0,0,0.15);
+    text-align:center;
+    max-width:400px;
+    width:90%;
+  }
+  h1{color:#E4572E; margin:0 0 10px; font-size:1.8rem;}
+  .score{font-size:1.2rem; font-weight:bold; color:#2E4B41; margin-bottom:20px;}
+  .question{
+    font-size:2.4rem;
+    font-weight:900;
+    background:#FBF3E3;
+    padding:16px;
+    border-radius:16px;
+    margin-bottom:24px;
+    color:#233A32;
+    border:2px dashed #F3A712;
+  }
+  .options{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .btn-opt{
+    background:#2D82B7;
+    color:#FFF;
+    font-size:1.5rem;
+    font-weight:bold;
+    border:none;
+    padding:16px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:0.15s transform;
+  }
+  .btn-opt:hover{transform:scale(1.05); background:#1F6591;}
+  .message{margin-top:16px; font-size:1.1rem; font-weight:bold; min-height:30px;}
+  .correct{color:#10B981;}
+  .wrong{color:#EF4444;}
+</style>
+</head>
+<body>
+<div class="game-box">
+  <h1>🔢 مسابقه ریاضی شاد</h1>
+  <div class="score">امتیاز: <span id="scoreVal">0</span> ⭐</div>
+  <div class="question" id="qText">? + ? = ؟</div>
+  <div class="options" id="opts"></div>
+  <div class="message" id="msg"></div>
+</div>
+
+<script>
+let score = 0;
+let answer = 0;
+
+function nextQuestion() {
+  const num1 = Math.floor(Math.random() * 10) + 1;
+  const num2 = Math.floor(Math.random() * 10) + 1;
+  answer = num1 + num2;
+  document.getElementById('qText').textContent = num1 + ' + ' + num2 + ' = ؟';
+  
+  const choices = [answer];
+  while(choices.length < 4) {
+    const wrong = answer + Math.floor(Math.random() * 7) - 3;
+    if(wrong > 0 && !choices.includes(wrong)) {
+      choices.push(wrong);
+    }
+  }
+  choices.sort(() => Math.random() - 0.5);
+
+  const optsContainer = document.getElementById('opts');
+  optsContainer.innerHTML = '';
+  choices.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'btn-opt';
+    btn.textContent = c;
+    btn.onclick = () => checkAns(c);
+    optsContainer.appendChild(btn);
+  });
+}
+
+function checkAns(c) {
+  const msg = document.getElementById('msg');
+  if(c === answer) {
+    score += 10;
+    document.getElementById('scoreVal').textContent = score;
+    msg.textContent = 'آفرین! درسته 👏🎉';
+    msg.className = 'message correct';
+    setTimeout(() => { msg.textContent = ''; nextQuestion(); }, 700);
+  } else {
+    msg.textContent = 'دوباره تلاش کن! 🤔';
+    msg.className = 'message wrong';
+  }
+}
+
+nextQuestion();
+</script>
+</body>
+</html>

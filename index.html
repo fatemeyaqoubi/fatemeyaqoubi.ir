@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>وب‌سایت خانم فاطمه یعقوبی</title>
+<meta name="description" content="کلاس آنلاین و بازی‌های تعاملی خانم فاطمه یعقوبی">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><text y='50%' x='50%' text-anchor='middle' dominant-baseline='middle' font-size='54'>🎒</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF3E3;
+    --paper-line:#E9DCC2;
+    --ink:#2E2A26;
+    --ink-soft:#5B5348;
+    --chalk-green:#2E4B41;
+    --chalk-green-dark:#233A32;
+    --coral:#E4572E;
+    --blue:#2D82B7;
+    --yellow:#F3A712;
+    --cream:#FBF3E3;
+    --radius-card: 14px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    background-image:
+      repeating-linear-gradient(var(--paper) 0px, var(--paper) 37px, var(--paper-line) 38px);
+    color:var(--ink);
+    font-family:'Vazirmatn', sans-serif;
+    line-height:1.8;
+  }
+
+  a{color:inherit; text-decoration:none;}
+
+  ::selection{background:var(--yellow); color:var(--ink);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ---------- HERO / PROFILE ---------- */
+  .hero{
+    position:relative;
+    background:var(--chalk-green);
+    background-image: radial-gradient(circle at 15% 20%, rgba(255,255,255,0.05), transparent 40%),
+                       radial-gradient(circle at 85% 80%, rgba(255,255,255,0.04), transparent 45%);
+    color:var(--cream);
+    padding:64px 24px 88px;
+    overflow:hidden;
+  }
+
+  .hero-doodles{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:0.55;
+  }
+
+  .hero-inner{
+    max-width:920px;
+    margin:0 auto;
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:40px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .avatar-wrap{
+    flex:0 0 auto;
+  }
+
+  .avatar{
+    width:150px;
+    height:150px;
+    display:block;
+  }
+
+  .avatar-photo-wrap{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    overflow:hidden;
+    border:4px solid var(--yellow);
+    box-shadow:0 8px 24px rgba(0,0,0,0.25);
+    background:var(--cream);
+  }
+
+  .avatar-photo{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .hero-text{
+    flex:1 1 320px;
+    min-width:260px;
+    text-align:right;
+  }
+
+  .eyebrow-name{
+    font-family:'Lalezar', 'Vazirmatn', sans-serif;
+    font-size:clamp(2.2rem, 5vw, 3.1rem);
+    margin:0 0 6px;
+    color:#FDF9EF;
+    letter-spacing:0.5px;
+    position:relative;
+    display:inline-block;
+  }
+
+  .role{
+    font-size:1.05rem;
+    color:var(--yellow);
+    font-weight:700;
+    margin:0 0 16px;
+  }
+
+  .bio{
+    max-width:52ch;
+    font-size:1.02rem;
+    color:#EDE6D6;
+    margin:0;
+    white-space:pre-line;
+  }
+
+  .underline-swash{
+    display:block;
+    width:min(340px, 60vw);
+    height:14px;
+    margin:6px 0 0;
+  }
+
+  /* ---------- GAMES SECTION ---------- */
+  .games-section{
+    max-width:1040px;
+    margin:0 auto;
+    padding:64px 24px 90px;
+  }
+
+  .section-head{
+    text-align:center;
+    margin-bottom:44px;
+  }
+
+  .section-head h2{
+    font-family:'Lalezar', 'Vazirmatn', sans-serif;
+    font-size:clamp(1.8rem, 4vw, 2.4rem);
+    color:var(--chalk-green-dark);
+    margin:0 0 8px;
+  }
+
+  .section-head p{
+    color:var(--ink-soft);
+    margin:0;
+    font-size:0.98rem;
+  }
+
+  .games-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));
+    gap:28px;
+  }
+
+  .game-card{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    background:#FFFDF6;
+    border:2px dashed #D8C79E;
+    border-radius:var(--radius-card);
+    padding:26px 20px 22px;
+    color:var(--ink);
+    transition:transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    box-shadow:0 3px 0 rgba(46,38,26,0.06);
+    transform:rotate(var(--tilt, 0deg));
+  }
+
+  .game-card:nth-child(6n+1){ --tilt:-1.2deg; }
+  .game-card:nth-child(6n+2){ --tilt:0.8deg; }
+  .game-card:nth-child(6n+3){ --tilt:-0.6deg; }
+  .game-card:nth-child(6n+4){ --tilt:1.1deg; }
+  .game-card:nth-child(6n+5){ --tilt:-1deg; }
+  .game-card:nth-child(6n+6){ --tilt:0.5deg; }
+
+  .game-card:hover,
+  .game-card:focus-visible{
+    transform:rotate(0deg) translateY(-4px);
+    border-color:var(--coral);
+    box-shadow:0 10px 22px rgba(46,38,26,0.14);
+  }
+
+  .game-card:focus-visible{
+    outline:3px solid var(--blue);
+    outline-offset:3px;
+  }
+
+  .tape{
+    position:absolute;
+    top:-10px;
+    right:24px;
+    width:52px;
+    height:22px;
+    border-radius:2px;
+    opacity:0.9;
+    transform:rotate(-4deg);
+  }
+
+  .game-card:nth-child(4n+1) .tape{ background:rgba(228,87,46,0.55); }
+  .game-card:nth-child(4n+2) .tape{ background:rgba(45,130,183,0.55); }
+  .game-card:nth-child(4n+3) .tape{ background:rgba(243,167,18,0.6); }
+  .game-card:nth-child(4n+4) .tape{ background:rgba(46,75,65,0.4); }
+
+  .icon-badge{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.7rem;
+    background:var(--cream);
+    border:2px solid var(--chalk-green);
+    flex-shrink:0;
+    overflow:hidden;
+  }
+
+  .game-title{
+    font-size:1.12rem;
+    font-weight:700;
+    margin:0;
+    color:var(--chalk-green-dark);
+  }
+
+  .game-desc{
+    font-size:0.92rem;
+    color:var(--ink-soft);
+    margin:0;
+  }
+
+  .play-hint{
+    margin-top:auto;
+    padding-top:10px;
+    font-size:0.85rem;
+    font-weight:700;
+    color:var(--coral);
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+
+  .footer{
+    text-align:center;
+    padding:30px 20px 46px;
+    color:var(--ink-soft);
+    font-size:0.88rem;
+  }
+
+  @media (max-width:520px){
+    .hero{padding:48px 18px 70px;}
+    .hero-inner{flex-direction:column; text-align:center;}
+    .hero-text{text-align:center;}
+    .bio{margin:0 auto;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="hero-doodles" viewBox="0 0 900 400" preserveAspectRatio="none" aria-hidden="true">
+    <g stroke="#F3A712" stroke-width="2" fill="none" stroke-linecap="round">
+      <path d="M60 60 l6 14 l14 2 l-10 10 l2 14 l-12 -7 l-12 7 l2 -14 l-10 -10 l14 -2 z" />
+      <path d="M810 90 l5 12 l12 2 l-9 9 l2 12 l-10 -6 l-10 6 l2 -12 l-9 -9 l12 -2 z" />
+      <circle cx="770" cy="230" r="16" />
+      <circle cx="770" cy="230" r="26" opacity="0.5"/>
+    </g>
+    <g stroke="#EDE6D6" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6">
+      <path d="M40 300 q30 -20 60 0 q30 20 60 0" />
+      <path d="M700 40 q20 -14 40 0 q20 14 40 0" />
+    </g>
+  </svg>
+
+  <div class="hero-inner">
+    <div class="avatar-wrap">
+      
+      <svg class="avatar" viewBox="0 0 150 150" role="img" aria-label="تصویر نمادین آموزگار">
+        <circle cx="75" cy="75" r="72" fill="#FBF3E3" stroke="#F3A712" stroke-width="3"/>
+        <circle cx="75" cy="60" r="26" fill="#E4572E"/>
+        <path d="M30 128 q45 -42 90 0 z" fill="#2D82B7"/>
+        <circle cx="75" cy="60" r="26" fill="none" stroke="#2E4B41" stroke-width="2"/>
+      </svg>
+    
+    </div>
+    <div class="hero-text">
+      <h1 class="eyebrow-name">خانم فاطمه یعقوبی</h1>
+      <p class="role">آموزگار پایه ابتدایی و طراح بازی‌های یادگیری</p>
+      <svg class="underline-swash" viewBox="0 0 340 14" aria-hidden="true">
+        <path d="M2 8 Q 90 -2, 170 7 T 338 6" stroke="#F3A712" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </svg>
+      <p class="bio">به کلاس درس مجازی من خوش آمدید! در اینجا با بازی و شادی، مفاهیم درسی را با هم تمرین می‌کنیم.</p>
+    </div>
+  </div>
+</header>
+
+<main class="games-section" id="games">
+  <div class="section-head">
+    <h2>بازی‌هایی که طراحی کرده‌ام</h2>
+    <p>روی هر کارت کلیک کنید تا بازی در یک صفحه‌ی جدید باز شود.</p>
+  </div>
+
+  <div class="games-grid">
+
+    <a class="game-card" href="games/game-1788761310109/index.html" target="_blank" rel="noopener">
+      <span class="tape"></span>
+      <div class="icon-badge"><span>🔢</span></div>
+      <h3 class="game-title">مسابقه ریاضی شاد</h3>
+      <p class="game-desc">بازی آموزشی جدول ضرب و جمع اعداد</p>
+      <span class="play-hint">شروع بازی ←</span>
+    </a>
+
+    <a class="game-card" href="https://example.com/game/riazi-sari" target="_blank" rel="noopener">
+      <span class="tape"></span>
+      <div class="icon-badge"><span>🔢</span></div>
+      <h3 class="game-title">مسابقه‌ی ریاضی سریع</h3>
+      <p class="game-desc">حل سریع جمع و تفریق ساده در مقابل ساعت شنی.</p>
+      <span class="play-hint">شروع بازی ←</span>
+    </a>
+
+    <a class="game-card" href="https://example.com/game/jorchin-eshkal" target="_blank" rel="noopener">
+      <span class="tape"></span>
+      <div class="icon-badge"><span>🔺</span></div>
+      <h3 class="game-title">جورچین اشکال هندسی</h3>
+      <p class="game-desc">چیدن شکل‌های رنگی کنار هم برای ساخت تصویرهای جدید.</p>
+      <span class="play-hint">شروع بازی ←</span>
+    </a>
+
+    <a class="game-card" href="https://example.com/game/kashef-kalamat" target="_blank" rel="noopener">
+      <span class="tape"></span>
+      <div class="icon-badge"><span>🔤</span></div>
+      <h3 class="game-title">کاشف کلمات</h3>
+      <p class="game-desc">پیدا کردن کلمات پنهان در جدول حروف با کمک تصویر راهنما.</p>
+      <span class="play-hint">شروع بازی ←</span>
+    </a>
+
+    <a class="game-card" href="https://example.com/game/rang-amizi-heyvanat" target="_blank" rel="noopener">
+      <span class="tape"></span>
+      <div class="icon-badge"><span>🎨</span></div>
+      <h3 class="game-title">رنگ‌آمیزی حیوانات</h3>
+      <p class="game-desc">رنگ کردن نقاشی حیوانات و آشنایی با نام آن‌ها به فارسی.</p>
+      <span class="play-hint">شروع بازی ←</span>
+    </a>
+
+    <a class="game-card" href="https://example.com/game/zaman-o-saat" target="_blank" rel="noopener">
+      <span class="tape"></span>
+      <div class="icon-badge"><span>⏰</span></div>
+      <h3 class="game-title">بازی زمان و ساعت</h3>
+      <p class="game-desc">خواندن عقربه‌های ساعت و تمرین گفتن زمان به فارسی.</p>
+      <span class="play-hint">شروع بازی ←</span>
+    </a>
+  </div>
+</main>
+
+<footer class="footer">
+  طراحی شده با عشق برای یادگیری کودکان ایران زمین ❤️
+</footer>
+
+</body>
+</html>
