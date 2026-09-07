@@ -1,0 +1,2274 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>پنل مدیریت وب‌سایت خانم فاطمه یعقوبی</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><text y='50%' x='50%' text-anchor='middle' dominant-baseline='middle' font-size='54'>🎒</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="assets/js/jszip.min.js"></script>
+
+<style>
+  :root {
+    --chalk-green: #1E3A34;
+    --chalk-green-light: #2A4E46;
+    --chalk-green-dark: #142824;
+    --paper: #FBF3E3;
+    --paper-card: #FFFFFF;
+    --ink: #22201D;
+    --ink-muted: #6B6357;
+    --ink-light: #9C9488;
+    --border-color: #E6DCB8;
+    --border-soft: #EDE4C9;
+    --coral: #E4572E;
+    --coral-hover: #D0451C;
+    --blue: #2D82B7;
+    --blue-hover: #226C9A;
+    --yellow: #F3A712;
+    --yellow-soft: #FEF3D6;
+    --green-badge: #10B981;
+    --red-badge: #EF4444;
+    --radius: 12px;
+    --shadow: 0 4px 20px rgba(30, 58, 52, 0.08);
+    --shadow-lg: 0 10px 30px rgba(30, 58, 52, 0.14);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Vazirmatn', sans-serif;
+    background: var(--paper);
+    background-image: repeating-linear-gradient(var(--paper) 0px, var(--paper) 37px, #EFE2C5 38px);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ----------------- Top Navbar ----------------- */
+  .navbar {
+    background: var(--chalk-green);
+    color: #FFF;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nav-logo {
+    font-size: 2rem;
+    line-height: 1;
+  }
+  .nav-titles h1 {
+    font-family: 'Lalezar', sans-serif;
+    font-size: 1.45rem;
+    margin: 0;
+    color: #FFF;
+    letter-spacing: 0.5px;
+  }
+  .nav-titles p {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--yellow);
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #FFF;
+  }
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #9CA3AF;
+  }
+  .status-dot.connected {
+    background: #10B981;
+    box-shadow: 0 0 8px #10B981;
+  }
+
+  .btn-nav {
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+    border: none;
+  }
+  .btn-nav-light {
+    background: rgba(255, 255, 255, 0.15);
+    color: #FFF;
+  }
+  .btn-nav-light:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: #FFF;
+  }
+  .btn-nav-danger {
+    background: rgba(239, 68, 68, 0.2);
+    color: #FCA5A5;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+  }
+  .btn-nav-danger:hover {
+    background: var(--red-badge);
+    color: #FFF;
+  }
+
+  /* ----------------- Layout Container ----------------- */
+  .main-wrapper {
+    max-width: 1140px;
+    width: 100%;
+    margin: 28px auto;
+    padding: 0 20px;
+    flex: 1;
+  }
+
+  /* ----------------- Navigation Tabs ----------------- */
+  .tabs-nav {
+    display: flex;
+    gap: 8px;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 24px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    outline: none;
+    padding: 12px 20px;
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink-muted);
+    cursor: pointer;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    position: relative;
+    white-space: nowrap;
+  }
+  .tab-btn:hover {
+    color: var(--chalk-green);
+    background: rgba(255, 255, 255, 0.6);
+  }
+  .tab-btn.active {
+    color: var(--chalk-green-dark);
+    background: #FFF;
+    border: 2px solid var(--border-color);
+    border-bottom: 3px solid #FFF;
+    margin-bottom: -2px;
+    box-shadow: 0 -3px 10px rgba(0,0,0,0.03);
+  }
+
+  /* ----------------- Cards and Panels ----------------- */
+  .card {
+    background: #FFFFFF;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    padding: 26px;
+    margin-bottom: 24px;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed var(--border-soft);
+  }
+  .card-header h2 {
+    font-size: 1.25rem;
+    color: var(--chalk-green-dark);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-header p {
+    margin: 4px 0 0;
+    color: var(--ink-muted);
+    font-size: 0.88rem;
+  }
+
+  /* ----------------- Form Controls ----------------- */
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .form-group.full-width {
+    grid-column: 1 / -1;
+  }
+  label {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--chalk-green);
+  }
+  .helper-text {
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    margin: 2px 0 0;
+  }
+  input[type="text"],
+  input[type="password"],
+  input[type="url"],
+  textarea,
+  select {
+    padding: 11px 14px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--ink);
+    background: #FCFAF6;
+    transition: all 0.2s;
+  }
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  input[type="url"]:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: var(--blue);
+    background: #FFF;
+    box-shadow: 0 0 0 3px rgba(45, 130, 183, 0.15);
+  }
+  textarea {
+    resize: vertical;
+    min-height: 90px;
+    line-height: 1.6;
+  }
+
+  /* ----------------- Buttons ----------------- */
+  .btn {
+    padding: 11px 22px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--chalk-green);
+    color: #FFF;
+  }
+  .btn-primary:hover {
+    background: var(--chalk-green-light);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(30, 58, 52, 0.2);
+  }
+  .btn-accent {
+    background: var(--coral);
+    color: #FFF;
+  }
+  .btn-accent:hover {
+    background: var(--coral-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(228, 87, 46, 0.25);
+  }
+  .btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--border-color);
+    color: var(--ink);
+  }
+  .btn-outline:hover {
+    border-color: var(--chalk-green);
+    color: var(--chalk-green);
+    background: var(--paper);
+  }
+  .btn-danger-outline {
+    background: transparent;
+    border: 1px solid #FCA5A5;
+    color: var(--red-badge);
+  }
+  .btn-danger-outline:hover {
+    background: #FEF2F2;
+    border-color: var(--red-badge);
+  }
+  .btn-sm {
+    padding: 6px 12px;
+    font-size: 0.82rem;
+    border-radius: 6px;
+  }
+
+  /* ----------------- Games Manager ----------------- */
+  .games-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .games-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .game-item-card {
+    background: #FCFAF6;
+    border: 1.5px solid var(--border-color);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    transition: all 0.2s;
+  }
+  .game-item-card:hover {
+    border-color: var(--blue);
+    background: #FFF;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+  }
+  .game-item-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+    min-width: 0;
+  }
+  .game-item-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--chalk-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .game-item-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .game-item-text {
+    min-width: 0;
+  }
+  .game-item-title {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin: 0 0 3px;
+    color: var(--chalk-green-dark);
+  }
+  .game-item-desc {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .game-item-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .badge {
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  .badge-tape-blue { background: #E0F2FE; color: #0369A1; }
+  .badge-tape-yellow { background: #FEF3C7; color: #B45309; }
+  .badge-tape-green { background: #DCFCE7; color: #15803D; }
+  .badge-tape-coral { background: #FFEDD5; color: #C2410C; }
+
+  .game-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  /* ----------------- File Drop Zone ----------------- */
+  .drop-zone {
+    border: 2px dashed var(--border-color);
+    border-radius: 10px;
+    padding: 28px 20px;
+    text-align: center;
+    background: #FCFAF6;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .drop-zone:hover, .drop-zone.dragover {
+    border-color: var(--coral);
+    background: #FFF8F5;
+  }
+  .drop-zone-icon {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+  }
+  .drop-zone-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--chalk-green);
+    margin: 0 0 4px;
+  }
+  .drop-zone-sub {
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    margin: 0;
+  }
+
+  /* ----------------- Modals ----------------- */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s ease;
+  }
+  .modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .modal-box {
+    background: #FFFFFF;
+    border-radius: var(--radius);
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    transform: scale(0.95);
+    transition: transform 0.25s ease;
+  }
+  .modal-overlay.active .modal-box {
+    transform: scale(1);
+  }
+  .modal-head {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FCFAF6;
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .modal-head h3 {
+    margin: 0;
+    color: var(--chalk-green-dark);
+    font-size: 1.2rem;
+  }
+  .modal-close {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    color: var(--ink-light);
+    cursor: pointer;
+    line-height: 1;
+  }
+  .modal-close:hover {
+    color: var(--coral);
+  }
+  .modal-body {
+    padding: 24px;
+  }
+  .modal-foot {
+    padding: 16px 24px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    background: #FCFAF6;
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+
+  /* ----------------- Toast Notifications ----------------- */
+  #toast-container {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 9999;
+  }
+  .toast {
+    background: #1F2937;
+    color: #FFF;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    max-width: 380px;
+  }
+  .toast-success { background: #065F46; border-right: 5px solid #10B981; }
+  .toast-error { background: #991B1B; border-right: 5px solid #EF4444; }
+  .toast-info { background: #1E3A8A; border-right: 5px solid #3B82F6; }
+
+  @keyframes toastIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ----------------- Login Screen ----------------- */
+  #login-screen {
+    max-width: 480px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  .login-card {
+    background: #FFF;
+    border-radius: 16px;
+    padding: 36px 30px;
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--border-color);
+    text-align: center;
+  }
+  .login-avatar {
+    font-size: 3.5rem;
+    margin-bottom: 12px;
+  }
+  .login-card h2 {
+    font-family: 'Lalezar', sans-serif;
+    font-size: 1.8rem;
+    color: var(--chalk-green-dark);
+    margin: 0 0 6px;
+  }
+  .login-card p {
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+    margin: 0 0 24px;
+  }
+
+  .guide-box {
+    background: var(--yellow-soft);
+    border: 1px solid #E9D5A1;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: right;
+    font-size: 0.84rem;
+    line-height: 1.7;
+    margin-top: 20px;
+  }
+  .guide-box ol {
+    margin: 8px 0 0;
+    padding-right: 20px;
+  }
+
+  /* ----------------- Step Tracker in Deploy ----------------- */
+  .deploy-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .deploy-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: #FCFAF6;
+    border: 1px solid var(--border-soft);
+    font-size: 0.92rem;
+  }
+  .deploy-step.active {
+    border-color: var(--blue);
+    background: #F0F9FF;
+    color: #0369A1;
+  }
+  .deploy-step.done {
+    border-color: #A7F3D0;
+    background: #ECFDF5;
+    color: #065F46;
+  }
+  .deploy-spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #CBD5E1;
+    border-top-color: var(--blue);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* ----------------- Responsive ----------------- */
+  @media (max-width: 640px) {
+    .navbar { padding: 12px 16px; }
+    .card { padding: 18px; }
+    .game-item-card { flex-direction: column; align-items: stretch; }
+    .game-item-actions { justify-content: flex-end; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+  <div class="nav-brand">
+    <div class="nav-logo">🎒</div>
+    <div class="nav-titles">
+      <h1>پنل مدیریت کلاس و بازی‌ها</h1>
+      <p>خانم فاطمه یعقوبی | نسخه بدون سرور (GitHub Jamstack)</p>
+    </div>
+  </div>
+
+  <div class="nav-actions">
+    <div id="auth-status-badge" class="status-badge" style="display:none;">
+      <span class="status-dot connected"></span>
+      <span id="auth-repo-label">متصل به مخزن</span>
+    </div>
+    <a href="index.html" target="_blank" class="btn-nav btn-nav-light">
+      👁️ مشاهده وب‌سایت
+    </a>
+    <button id="logout-btn" class="btn-nav btn-nav-danger" style="display:none;" onclick="logout()">
+      خروج
+    </button>
+  </div>
+</header>
+
+<!-- Toast Container -->
+<div id="toast-container"></div>
+
+<!-- Login Screen -->
+<div id="login-screen" style="display:none;">
+  <div class="login-card">
+    <div class="login-avatar">🔐</div>
+    <h2>ورود امن به پنل مدیریت</h2>
+    <p>جهت مدیریت اطلاعات و بارگذاری بازی‌ها، توکن دسترسی اختصاصی گیت‌هاب (PAT) خود را وارد کنید.</p>
+
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <div class="form-group" style="text-align:right; margin-bottom:16px;">
+        <label for="input-token">توکن دسترسی شخصی گیت‌هاب (Personal Access Token):</label>
+        <input type="password" id="input-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" required>
+        <span class="helper-text">توکن فقط در مرورگر شما ذخیره شده و روی هیچ سروری ارسال نمی‌شود.</span>
+      </div>
+
+      <div class="form-grid" style="text-align:right; margin-bottom:18px;">
+        <div class="form-group">
+          <label for="input-owner">مالک ریپازیتوری (Owner):</label>
+          <input type="text" id="input-owner" value="fatemeyaqoubi" required>
+        </div>
+        <div class="form-group">
+          <label for="input-repo">نام ریپازیتوری (Repo):</label>
+          <input type="text" id="input-repo" value="fatemeyaqoubi.ir" required>
+        </div>
+      </div>
+
+      <button type="submit" id="login-submit-btn" class="btn btn-primary" style="width:100%;">
+        🔑 ورود و اتصال به گیت‌هاب
+      </button>
+    </form>
+
+    <div class="guide-box">
+      <strong>💡 چگونه توکن دسترسی بسازم؟</strong>
+      <ol>
+        <li>وارد اکانت گیت‌هاب خود شوید و به بخش <strong>Settings > Developer Settings > Personal Access Tokens > Tokens (classic)</strong> بروید.</li>
+        <li>روی <strong>Generate new token (classic)</strong> کلیک کنید.</li>
+        <li>در بخش Scopes، تیک گزینه <strong>repo</strong> (دسترسی کامل خواندن و نوشتن مخزن) را فعال کنید.</li>
+        <li>توکن ساخته‌شده را کپی کرده و در کادر بالا قرار دهید.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- Main Admin App -->
+<main id="app-screen" class="main-wrapper" style="display:none;">
+  
+  <!-- Tabs Navigation -->
+  <nav class="tabs-nav">
+    <button class="tab-btn active" onclick="switchTab('tab-site')">
+      <span>🏠</span> مشخصات و متون سایت
+    </button>
+    <button class="tab-btn" onclick="switchTab('tab-games')">
+      <span>🎮</span> مدیریت بازی‌های آموزشی
+      <span id="games-count-badge" class="badge badge-tape-blue">0</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('tab-publish')">
+      <span>🚀</span> انتشار در گیت‌هاب
+      <span id="unsaved-indicator" class="status-dot" style="display:none; background:var(--coral);" title="تغییرات ذخیره‌نشده"></span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('tab-settings')">
+      <span>⚙️</span> تنظیمات مخزن و پشتیبان
+    </button>
+  </nav>
+
+  <!-- TAB 1: Site Content -->
+  <section id="tab-site" class="tab-content">
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h2><span>👩‍🏫</span> اطلاعات آموزگار و بخش معرفی (Hero)</h2>
+          <p>متن‌ها و عناوینی که در بالای صفحه اصلی سایت نمایش داده می‌شوند.</p>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="saveSiteContentLocally()">
+          💾 ذخیره تغییرات محتوا
+        </button>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="field-teacher-name">نام و نام خانوادگی آموزگار:</label>
+          <input type="text" id="field-teacher-name">
+        </div>
+
+        <div class="form-group">
+          <label for="field-role">سمت یا عنوان آموزشی:</label>
+          <input type="text" id="field-role">
+        </div>
+
+        <div class="form-group full-width">
+          <label for="field-bio">پیام خوش‌آمدگویی و بیوگرافی:</label>
+          <textarea id="field-bio"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="field-avatar-type">نوع تصویر آموزگار:</label>
+          <select id="field-avatar-type" onchange="toggleAvatarInputs()">
+            <option value="svg">تصویر نمادین پیش‌فرض (کارتونی)</option>
+            <option value="image">عکس شخصی (آپلود عکس)</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="avatar-upload-group" style="display:none;">
+          <label for="field-avatar-file">انتخاب عکس جدید آموزگار:</label>
+          <input type="file" id="field-avatar-file" accept="image/*" onchange="handleAvatarSelected(event)">
+          <span class="helper-text" id="avatar-status-text">عکس در پوشه uploads ذخیره خواهد شد.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h2><span>🌐</span> تنظیمات عمومی وب‌سایت و متون</h2>
+          <p>عنوان تب مرورگر، آیکون فاوآیکون، متن بخش بازی‌ها و پاورقی سایت.</p>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="field-page-title">عنوان صفحه در مرورگر (Title):</label>
+          <input type="text" id="field-page-title">
+        </div>
+
+        <div class="form-group">
+          <label for="field-favicon-emoji">ایموجی فاوآیکون سایت (Favicon):</label>
+          <input type="text" id="field-favicon-emoji" maxlength="4" style="font-size:1.4rem; text-align:center;">
+          <span class="helper-text">یک ایموجی انتخاب کنید مانند: 🎒، 💡، 📚، 🎨، 🍎</span>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="field-meta-desc">توضیحات سایت برای موتورهای جستجو (Meta Description):</label>
+          <input type="text" id="field-meta-desc">
+        </div>
+
+        <div class="form-group">
+          <label for="field-games-title">عنوان بخش بازی‌ها:</label>
+          <input type="text" id="field-games-title">
+        </div>
+
+        <div class="form-group">
+          <label for="field-games-subtitle">توضیح زیر عنوان بازی‌ها:</label>
+          <input type="text" id="field-games-subtitle">
+        </div>
+
+        <div class="form-group full-width">
+          <label for="field-footer-text">متن پاورقی سایت (Footer):</label>
+          <input type="text" id="field-footer-text">
+        </div>
+      </div>
+
+      <div style="margin-top:20px; text-align:left;">
+        <button class="btn btn-primary" onclick="saveSiteContentLocally()">
+          💾 ثبت تغییرات متنی در حافظه
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 2: Games Manager -->
+  <section id="tab-games" class="tab-content" style="display:none;">
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h2><span>🎮</span> فهرست بازی‌های آموزشی موجود</h2>
+          <p>بازی‌ها را مرتب کنید، ویرایش نمایید یا بازی تعاملی جدید بارگذاری کنید.</p>
+        </div>
+        <button class="btn btn-accent" onclick="openAddGameModal()">
+          ➕ افزودن بازی جدید
+        </button>
+      </div>
+
+      <div class="games-toolbar">
+        <input type="text" id="games-search" placeholder="🔍 جستجو در بازی‌ها..." oninput="filterGamesList()" style="max-width:300px;">
+        <span class="helper-text">برای تغییر ترتیب نمایش در سایت، از فلش‌های بالا و پایین هر کارت استفاده کنید.</span>
+      </div>
+
+      <div id="games-list-container" class="games-list">
+        <!-- Card items populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 3: Publish to GitHub -->
+  <section id="tab-publish" class="tab-content" style="display:none;">
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h2><span>🚀</span> انتشار و همگام‌سازی با GitHub Pages</h2>
+          <p>تمامی تغییرات ایجاد شده در قالب یک کامیت یکپارچه و اتمیک به ریپازیتوری شما ارسال می‌شود.</p>
+        </div>
+      </div>
+
+      <div id="publish-summary-box" style="background:#FCFAF6; border:1px solid var(--border-soft); border-radius:10px; padding:20px; margin-bottom:20px;">
+        <h3 style="margin:0 0 12px; color:var(--chalk-green);">وضعیت تغییرات آماده برای انتشار:</h3>
+        <ul id="publish-changes-list" style="margin:0; padding-right:20px; line-height:1.8; color:var(--ink);">
+          <li>داده‌ها در حال بررسی...</li>
+        </ul>
+      </div>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <button id="btn-deploy-now" class="btn btn-accent" style="padding:14px 28px; font-size:1.05rem;" onclick="startPublishWorkflow()">
+          🚀 انتشار آنی تغییرات در گیت‌هاب (Publish to GitHub)
+        </button>
+        <a href="index.html" target="_blank" class="btn btn-outline" style="padding:14px 20px;">
+          👁️ پیش‌نمایش صفحه اصلی
+        </a>
+      </div>
+
+      <!-- Deploy Progress -->
+      <div id="deploy-progress-box" style="display:none; margin-top:24px;">
+        <h4 style="margin:0 0 10px; color:var(--chalk-green-dark);">مراحل انتشار در گیت‌هاب:</h4>
+        <div class="deploy-steps">
+          <div id="step-1" class="deploy-step">
+            <div class="deploy-spinner"></div>
+            <span>۱. دریافت آخرین وضعیت شاخه اصلی (main) از GitHub API...</span>
+          </div>
+          <div id="step-2" class="deploy-step">
+            <span>۲. ایجاد Blob برای فایل‌های تغییر یافته و بازی‌های جدید...</span>
+          </div>
+          <div id="step-3" class="deploy-step">
+            <span>۳. ساخت ساختار درختی جدید (Git Tree)...</span>
+          </div>
+          <div id="step-4" class="deploy-step">
+            <span>۴. ثبت کامیت اتمیک و به‌روزرسانی شاخه main...</span>
+          </div>
+        </div>
+        <div id="deploy-result" style="display:none; margin-top:16px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 4: Repository Settings & Backup -->
+  <section id="tab-settings" class="tab-content" style="display:none;">
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h2><span>⚙️</span> تنظیمات مخزن و مشخصات نویسنده</h2>
+          <p>اطلاعات ریپازیتوری متصل و مشخصات هویتی کامیت‌ها.</p>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="saveGitSettings()">
+          💾 ذخیره تنظیمات
+        </button>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="cfg-owner">مالک ریپازیتوری (GitHub Username):</label>
+          <input type="text" id="cfg-owner">
+        </div>
+        <div class="form-group">
+          <label for="cfg-repo">نام ریپازیتوری (Repository Name):</label>
+          <input type="text" id="cfg-repo">
+        </div>
+        <div class="form-group">
+          <label for="cfg-branch">شاخه انتشار (Branch):</label>
+          <input type="text" id="cfg-branch" value="main">
+        </div>
+        <div class="form-group">
+          <label for="cfg-author-name">نام نویسنده کامیت‌ها:</label>
+          <input type="text" id="cfg-author-name">
+        </div>
+        <div class="form-group">
+          <label for="cfg-author-email">ایمیل نویسنده کامیت‌ها:</label>
+          <input type="text" id="cfg-author-email">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h2><span>📦</span> پشتیبان‌گیری و خروجی داده‌ها</h2>
+          <p>دریافت نسخه پشتیبان از داده‌های فعلی سایت در قالب فایل JSON استاندارد.</p>
+        </div>
+      </div>
+      <p style="color:var(--ink-muted); font-size:0.9rem;">
+        می‌توانید تمام بازی‌ها، بیوگرافی و تنظیمات سایت را هر زمان به صورت یک فایل <code>site-data.json</code> روی رایانه خود دانلود و نگهداری نمایید.
+      </p>
+      <button class="btn btn-outline" onclick="downloadBackupJson()">
+        📥 دانلود فایل پشتیبان (site-data.json)
+      </button>
+    </div>
+  </section>
+
+</main>
+
+<!-- MODAL: Add / Edit Game -->
+<div id="game-modal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 id="game-modal-title">افزودن بازی جدید</h3>
+      <button class="modal-close" onclick="closeGameModal()">&times;</button>
+    </div>
+
+    <form id="game-modal-form" onsubmit="handleSaveGame(event)">
+      <div class="modal-body">
+        <input type="hidden" id="modal-game-id">
+
+        <div class="form-group" style="margin-bottom:14px;">
+          <label for="modal-game-title">عنوان بازی (اجباری):</label>
+          <input type="text" id="modal-game-title" placeholder="مثال: مسابقه جدول ضرب شاد" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom:14px;">
+          <label for="modal-game-desc">توضیح کوتاه بازی:</label>
+          <input type="text" id="modal-game-desc" placeholder="مثال: حل سریع تمرین‌های ریاضی در قالب بازی">
+        </div>
+
+        <div class="form-grid" style="margin-bottom:14px;">
+          <div class="form-group">
+            <label for="modal-game-icon">آیکون یا اموجی:</label>
+            <input type="text" id="modal-game-icon" value="🎮" style="text-align:center; font-size:1.3rem;">
+            <div style="display:flex; gap:6px; margin-top:6px; flex-wrap:wrap;">
+              <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('modal-game-icon').value='🔢'">🔢</button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('modal-game-icon').value='🔺'">🔺</button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('modal-game-icon').value='🔤'">🔤</button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('modal-game-icon').value='🎨'">🎨</button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('modal-game-icon').value='⏰'">⏰</button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('modal-game-icon').value='🧠'">🧠</button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('modal-game-icon').value='🧩'">🧩</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="modal-game-tape">رنگ نوار چسب کارت:</label>
+            <select id="modal-game-tape">
+              <option value="blue">آبی (Blue)</option>
+              <option value="coral">مرجانی (Coral)</option>
+              <option value="yellow">زرد (Yellow)</option>
+              <option value="green">سبز (Green)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:14px;">
+          <label>نوع منبع بازی:</label>
+          <div style="display:flex; gap:16px; margin-top:4px;">
+            <label style="font-weight:normal; cursor:pointer;">
+              <input type="radio" name="game-source-type" value="upload" checked onchange="toggleGameSourceInputs()">
+              آپلود فایل بازی (ZIP یا HTML)
+            </label>
+            <label style="font-weight:normal; cursor:pointer;">
+              <input type="radio" name="game-source-type" value="url" onchange="toggleGameSourceInputs()">
+              لینک خارجی اینترنتی
+            </label>
+          </div>
+        </div>
+
+        <!-- Upload Source -->
+        <div id="game-upload-source" style="margin-bottom:14px;">
+          <label>فایل بازی (.zip یا .html):</label>
+          <div class="drop-zone" onclick="document.getElementById('modal-game-file').click()">
+            <div class="drop-zone-icon">📁</div>
+            <p class="drop-zone-text" id="file-drop-text">کلیک کنید یا فایل بازی را اینجا رها کنید</p>
+            <p class="drop-zone-sub">پشتیبانی از بسته‌های ZIP چندفایلی و فایل‌های تک‌صفحه‌ای HTML</p>
+            <input type="file" id="modal-game-file" accept=".zip,.html,.htm" style="display:none;" onchange="handleGameFileSelected(event)">
+          </div>
+          <div id="zip-preview-info" style="display:none; margin-top:10px; padding:10px; background:#F0FDF4; border:1px solid #BBF7D0; border-radius:8px; font-size:0.85rem; color:#166534;"></div>
+        </div>
+
+        <!-- URL Source -->
+        <div id="game-url-source" class="form-group" style="display:none; margin-bottom:14px;">
+          <label for="modal-game-url">آدرس مستقیم بازی (URL):</label>
+          <input type="url" id="modal-game-url" placeholder="https://example.com/game">
+        </div>
+
+      </div>
+
+      <div class="modal-foot">
+        <button type="button" class="btn btn-outline" onclick="closeGameModal()">انصراف</button>
+        <button type="submit" id="btn-save-game-modal" class="btn btn-primary">ثبت و افزودن بازی</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- JavaScript Logic -->
+<script>
+  // Global State
+  let siteData = null;
+  let authConfig = null;
+  let pendingFilesToCommit = []; // Array of { path: string, content: base64, isBinary: boolean }
+  let pendingGameUpload = null; // Holds parsed ZIP / HTML files for currently added game
+  let pendingAvatarUpload = null;
+  let hasUnsavedChanges = false;
+
+  // Initialization
+  window.addEventListener('DOMContentLoaded', async () => {
+    checkAuthentication();
+  });
+
+  // ----------------- AUTHENTICATION -----------------
+  function checkAuthentication() {
+    const saved = localStorage.getItem('fy_admin_auth');
+    if (saved) {
+      try {
+        authConfig = JSON.parse(saved);
+        showAppScreen();
+        loadInitialData();
+        return;
+      } catch (e) {
+        localStorage.removeItem('fy_admin_auth');
+      }
+    }
+    showLoginScreen();
+  }
+
+  function showLoginScreen() {
+    document.getElementById('login-screen').style.display = 'block';
+    document.getElementById('app-screen').style.display = 'none';
+    document.getElementById('auth-status-badge').style.display = 'none';
+    document.getElementById('logout-btn').style.display = 'none';
+  }
+
+  function showAppScreen() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app-screen').style.display = 'block';
+    document.getElementById('auth-status-badge').style.display = 'inline-flex';
+    document.getElementById('auth-repo-label').textContent = `${authConfig.owner}/${authConfig.repo} (${authConfig.branch || 'main'})`;
+    document.getElementById('logout-btn').style.display = 'inline-flex';
+  }
+
+  async function handleLogin(e) {
+    e.preventDefault();
+    const token = document.getElementById('input-token').value.trim();
+    const owner = document.getElementById('input-owner').value.trim();
+    const repo = document.getElementById('input-repo').value.trim();
+    const submitBtn = document.getElementById('login-submit-btn');
+
+    if (!token || !owner || !repo) {
+      showToast('لطفاً تمام فیلدها را تکمیل کنید.', 'error');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = '🔄 در حال اعتبارسنجی با گیت‌هاب...';
+
+    try {
+      const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      });
+
+      if (res.status === 401) {
+        throw new Error('توکن گیت‌هاب نامعتبر یا منقضی شده است.');
+      }
+      if (res.status === 404) {
+        throw new Error('ریپازیتوری یافت نشد یا توکن شما دسترسی لازم به آن را ندارد.');
+      }
+      if (!res.ok) {
+        throw new Error(`خطای ارتباط با گیت‌هاب (کد ${res.status})`);
+      }
+
+      const repoData = await res.json();
+      if (repoData.permissions && repoData.permissions.push === false) {
+        throw new Error('توکن شما فقط دسترسی خواندن دارد و اجازه انتشار یا تغییر در مخزن را ندارد.');
+      }
+
+      authConfig = {
+        token,
+        owner,
+        repo,
+        branch: repoData.default_branch || 'main'
+      };
+
+      localStorage.setItem('fy_admin_auth', JSON.stringify(authConfig));
+      showToast('ورود با موفقیت انجام شد! خوش آمدید.', 'success');
+      showAppScreen();
+      await loadInitialData();
+    } catch (err) {
+      showToast(err.message, 'error');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = '🔑 ورود و اتصال به گیت‌هاب';
+    }
+  }
+
+  function logout() {
+    if (confirm('آیا از خروج از پنل مدیریت اطمینان دارید؟')) {
+      localStorage.removeItem('fy_admin_auth');
+      authConfig = null;
+      showLoginScreen();
+      showToast('از حساب خارج شدید.', 'info');
+    }
+  }
+
+  // ----------------- DATA LOADING -----------------
+  async function loadInitialData() {
+    try {
+      // 1. Try loading from GitHub API to have the freshest data
+      const url = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/contents/site-data.json?ref=${authConfig.branch || 'main'}&t=${Date.now()}`;
+      const res = await fetch(url, {
+        headers: {
+          'Authorization': `Bearer ${authConfig.token}`,
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      });
+
+      if (res.ok) {
+        const fileObj = await res.json();
+        const jsonString = b64DecodeUnicode(fileObj.content);
+        siteData = JSON.parse(jsonString);
+      } else {
+        // Fallback: try local file fetch
+        const localRes = await fetch('./site-data.json?t=' + Date.now());
+        if (localRes.ok) {
+          siteData = await localRes.json();
+        } else {
+          throw new Error('فایل site-data.json یافت نشد.');
+        }
+      }
+
+      populateFormFields();
+      renderGamesList();
+      updatePublishSummary();
+      showToast('داده‌های سایت با موفقیت بارگذاری شدند.', 'success');
+    } catch (err) {
+      console.error('Error loading data:', err);
+      showToast('خطا در دریافت اطلاعات: ' + err.message, 'error');
+    }
+  }
+
+  function populateFormFields() {
+    if (!siteData) return;
+
+    // Site content
+    document.getElementById('field-page-title').value = siteData.pageTitle || '';
+    document.getElementById('field-meta-desc').value = siteData.metaDescription || '';
+    document.getElementById('field-favicon-emoji').value = siteData.favicon?.value || '🎒';
+    document.getElementById('field-teacher-name').value = siteData.hero?.teacherName || '';
+    document.getElementById('field-role').value = siteData.hero?.role || '';
+    document.getElementById('field-bio').value = siteData.hero?.bio || '';
+    document.getElementById('field-avatar-type').value = siteData.hero?.avatarType || 'svg';
+    toggleAvatarInputs();
+
+    document.getElementById('field-games-title').value = siteData.gamesSection?.title || 'بازی‌هایی که طراحی کرده‌ام';
+    document.getElementById('field-games-subtitle').value = siteData.gamesSection?.subtitle || 'روی هر کارت کلیک کنید تا بازی در یک صفحه‌ی جدید باز شود.';
+    document.getElementById('field-footer-text').value = siteData.footer?.text || 'طراحی شده با عشق برای یادگیری کودکان ایران زمین ❤️';
+
+    // Settings tab
+    document.getElementById('cfg-owner').value = authConfig.owner;
+    document.getElementById('cfg-repo').value = authConfig.repo;
+    document.getElementById('cfg-branch').value = authConfig.branch || 'main';
+    document.getElementById('cfg-author-name').value = siteData.gitConfig?.authorName || 'فاطمه یعقوبی';
+    document.getElementById('cfg-author-email').value = siteData.gitConfig?.authorEmail || 'teacher@fatemeyaqoubi.ir';
+
+    // Games count badge
+    const count = Array.isArray(siteData.games) ? siteData.games.length : 0;
+    document.getElementById('games-count-badge').textContent = count;
+  }
+
+  function toggleAvatarInputs() {
+    const type = document.getElementById('field-avatar-type').value;
+    const group = document.getElementById('avatar-upload-group');
+    group.style.display = (type === 'image') ? 'flex' : 'none';
+  }
+
+  function handleAvatarSelected(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+      const base64Content = evt.target.result.split(',')[1];
+      const filename = `avatar-${Date.now()}.${file.name.split('.').pop()}`;
+      pendingAvatarUpload = {
+        path: `uploads/${filename}`,
+        content: base64Content,
+        isBinary: true
+      };
+      if (!siteData.hero) siteData.hero = {};
+      siteData.hero.avatarType = 'image';
+      siteData.hero.avatarUrl = `uploads/${filename}`;
+      markUnsaved();
+      document.getElementById('avatar-status-text').textContent = `✅ عکس "${file.name}" انتخاب شد و با انتشار آپلود خواهد شد.`;
+      showToast('عکس آواتار انتخاب شد.', 'info');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function saveSiteContentLocally() {
+    if (!siteData) return;
+
+    siteData.pageTitle = document.getElementById('field-page-title').value.trim();
+    siteData.metaDescription = document.getElementById('field-meta-desc').value.trim();
+    siteData.favicon = {
+      type: 'emoji',
+      value: document.getElementById('field-favicon-emoji').value.trim() || '🎒'
+    };
+
+    if (!siteData.hero) siteData.hero = {};
+    siteData.hero.teacherName = document.getElementById('field-teacher-name').value.trim();
+    siteData.hero.role = document.getElementById('field-role').value.trim();
+    siteData.hero.bio = document.getElementById('field-bio').value.trim();
+    siteData.hero.avatarType = document.getElementById('field-avatar-type').value;
+
+    if (!siteData.gamesSection) siteData.gamesSection = {};
+    siteData.gamesSection.title = document.getElementById('field-games-title').value.trim();
+    siteData.gamesSection.subtitle = document.getElementById('field-games-subtitle').value.trim();
+
+    if (!siteData.footer) siteData.footer = {};
+    siteData.footer.text = document.getElementById('field-footer-text').value.trim();
+
+    markUnsaved();
+    showToast('تغییرات متنی با موفقیت ثبت شد. فراموش نکنید برای اعمال نهایی روی "انتشار در گیت‌هاب" کلیک کنید.', 'success');
+  }
+
+  // ----------------- GAMES MANAGER -----------------
+  function renderGamesList(filteredList = null) {
+    const list = filteredList || (siteData && siteData.games ? siteData.games : []);
+    const container = document.getElementById('games-list-container');
+
+    if (!list || list.length === 0) {
+      container.innerHTML = `
+        <div style="text-align:center; padding:40px; background:#FFF; border:2px dashed var(--border-color); border-radius:10px;">
+          <div style="font-size:2.5rem; margin-bottom:8px;">🎮✨</div>
+          <p style="margin:0; color:var(--ink-muted);">هنوز هیچ بازی‌ای اضافه نشده است. برای شروع دکمه «افزودن بازی جدید» را بزنید.</p>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = list.map((game, index) => {
+      const isImg = game.icon && (game.icon.startsWith('http') || game.icon.startsWith('uploads/'));
+      const iconHtml = isImg ? `<img src="${game.icon}" alt="">` : `<span>${game.icon || '🎮'}</span>`;
+      const tapeClass = `badge-tape-${game.tapeColor || 'coral'}`;
+
+      return `
+        <div class="game-item-card" data-id="${game.id}">
+          <div class="game-item-info">
+            <div class="game-item-icon">${iconHtml}</div>
+            <div class="game-item-text">
+              <h4 class="game-item-title">${escapeHtml(game.title)}</h4>
+              <p class="game-item-desc">${escapeHtml(game.desc || 'بدون توضیح')}</p>
+              <div class="game-item-meta">
+                <span class="badge ${tapeClass}">نوار: ${game.tapeColor || 'مرجانی'}</span>
+                <span class="badge" style="background:#F3F4F6; color:#4B5563;">${game.url?.startsWith('http') ? '🌐 لینک خارجی' : '📦 بازی داخلی'}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="game-item-actions">
+            <button class="btn btn-outline btn-sm" onclick="moveGame(${index}, -1)" ${index === 0 ? 'disabled' : ''} title="حرکت به بالا">⬆️</button>
+            <button class="btn btn-outline btn-sm" onclick="moveGame(${index}, 1)" ${index === list.length - 1 ? 'disabled' : ''} title="حرکت به پایین">⬇️</button>
+            <a href="${game.url || '#'}" target="_blank" class="btn btn-outline btn-sm" title="اجرای بازی">👁️ تست</a>
+            <button class="btn btn-outline btn-sm" onclick="editGame('${game.id}')" title="ویرایش">✏️ ویرایش</button>
+            <button class="btn btn-danger-outline btn-sm" onclick="deleteGame('${game.id}')" title="حذف">🗑️</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function filterGamesList() {
+    const q = document.getElementById('games-search').value.trim().toLowerCase();
+    if (!siteData || !siteData.games) return;
+    if (!q) {
+      renderGamesList();
+      return;
+    }
+    const filtered = siteData.games.filter(g => 
+      (g.title && g.title.toLowerCase().includes(q)) || 
+      (g.desc && g.desc.toLowerCase().includes(q))
+    );
+    renderGamesList(filtered);
+  }
+
+  function moveGame(index, direction) {
+    if (!siteData || !siteData.games) return;
+    const targetIndex = index + direction;
+    if (targetIndex < 0 || targetIndex >= siteData.games.length) return;
+
+    const temp = siteData.games[index];
+    siteData.games[index] = siteData.games[targetIndex];
+    siteData.games[targetIndex] = temp;
+
+    renderGamesList();
+    markUnsaved();
+    showToast('ترتیب بازی‌ها تغییر کرد.', 'info');
+  }
+
+  function openAddGameModal() {
+    document.getElementById('game-modal-title').textContent = 'افزودن بازی آموزشی جدید';
+    document.getElementById('modal-game-id').value = '';
+    document.getElementById('modal-game-title').value = '';
+    document.getElementById('modal-game-desc').value = '';
+    document.getElementById('modal-game-icon').value = '🎮';
+    document.getElementById('modal-game-tape').value = 'blue';
+    document.getElementById('modal-game-url').value = '';
+    document.getElementById('file-drop-text').textContent = 'کلیک کنید یا فایل بازی را اینجا رها کنید';
+    document.getElementById('zip-preview-info').style.display = 'none';
+    pendingGameUpload = null;
+
+    document.querySelector('input[name="game-source-type"][value="upload"]').checked = true;
+    toggleGameSourceInputs();
+
+    document.getElementById('game-modal').classList.add('active');
+  }
+
+  function closeGameModal() {
+    document.getElementById('game-modal').classList.remove('active');
+  }
+
+  function toggleGameSourceInputs() {
+    const type = document.querySelector('input[name="game-source-type"]:checked').value;
+    document.getElementById('game-upload-source').style.display = (type === 'upload') ? 'block' : 'none';
+    document.getElementById('game-url-source').style.display = (type === 'url') ? 'block' : 'none';
+  }
+
+  async function handleGameFileSelected(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const dropText = document.getElementById('file-drop-text');
+    const previewBox = document.getElementById('zip-preview-info');
+    dropText.textContent = `⏳ در حال بررسی و آماده‌سازی فایل: ${file.name}...`;
+
+    const ext = file.name.split('.').pop().toLowerCase();
+
+    if (ext === 'zip') {
+      try {
+        const arrayBuffer = await file.arrayBuffer();
+        const zip = await JSZip.loadAsync(arrayBuffer);
+        const fileNames = Object.keys(zip.files).filter(k => !zip.files[k].dir);
+
+        let entryFile = fileNames.find(n => n.toLowerCase().endsWith('index.html')) || 
+                        fileNames.find(n => n.toLowerCase().endsWith('.html') || n.toLowerCase().endsWith('.htm'));
+
+        if (!entryFile) {
+          throw new Error('هیچ فایل index.html یا فایل HTML دیگری درون بسته زیپ پیدا نشد.');
+        }
+
+        const filesData = [];
+        for (const fName of fileNames) {
+          const zipEntry = zip.files[fName];
+          const contentBase64 = await zipEntry.async('base64');
+          filesData.push({
+            relativeName: fName,
+            base64: contentBase64
+          });
+        }
+
+        pendingGameUpload = {
+          type: 'zip',
+          entryFile: entryFile,
+          files: filesData
+        };
+
+        dropText.textContent = `✅ بسته زیپ انتخاب شد: ${file.name}`;
+        previewBox.style.display = 'block';
+        previewBox.innerHTML = `
+          <strong>مشخصات بسته بازی:</strong><br>
+          تعداد فایل‌ها: ${fileNames.length} فایل | فایل ورودی اصلی: <code>${entryFile}</code>
+        `;
+        showToast('فایل زیپ بازی با موفقیت پردازش شد.', 'success');
+      } catch (err) {
+        dropText.textContent = '❌ خطا در خواندن فایل زیپ';
+        previewBox.style.display = 'none';
+        pendingGameUpload = null;
+        showToast(err.message, 'error');
+      }
+    } else if (ext === 'html' || ext === 'htm') {
+      try {
+        const text = await file.text();
+        const base64 = utf8ToBase64(text);
+        pendingGameUpload = {
+          type: 'single-html',
+          entryFile: 'index.html',
+          files: [{ relativeName: 'index.html', base64 }]
+        };
+        dropText.textContent = `✅ فایل HTML انتخاب شد: ${file.name}`;
+        previewBox.style.display = 'block';
+        previewBox.innerHTML = `فایل تک‌صفحه‌ای با نام <code>index.html</code> در پوشه اختصاصی بازی ذخیره خواهد شد.`;
+        showToast('فایل بازی آماده شد.', 'success');
+      } catch (err) {
+        showToast('خطا در خواندن فایل: ' + err.message, 'error');
+      }
+    } else {
+      showToast('فرمت فایل نامعتبر است. لطفاً فایل .zip یا .html انتخاب کنید.', 'error');
+      dropText.textContent = 'کلیک کنید یا فایل بازی را اینجا رها کنید';
+    }
+  }
+
+  function handleSaveGame(e) {
+    e.preventDefault();
+    const id = document.getElementById('modal-game-id').value;
+    const title = document.getElementById('modal-game-title').value.trim();
+    const desc = document.getElementById('modal-game-desc').value.trim();
+    const icon = document.getElementById('modal-game-icon').value.trim() || '🎮';
+    const tapeColor = document.getElementById('modal-game-tape').value;
+    const sourceType = document.querySelector('input[name="game-source-type"]:checked').value;
+
+    if (!title) {
+      showToast('عنوان بازی الزامی است.', 'error');
+      return;
+    }
+
+    if (!siteData.games) siteData.games = [];
+
+    if (id) {
+      // Edit existing game
+      const existing = siteData.games.find(g => g.id === id);
+      if (existing) {
+        existing.title = title;
+        existing.desc = desc;
+        existing.icon = icon;
+        existing.tapeColor = tapeColor;
+        if (sourceType === 'url') {
+          existing.url = document.getElementById('modal-game-url').value.trim();
+        }
+      }
+      showToast('مشخصات بازی ویرایش شد.', 'success');
+    } else {
+      // Add new game
+      const newId = `game-${Date.now()}`;
+      let gameUrl = '';
+
+      if (sourceType === 'upload') {
+        if (!pendingGameUpload || !pendingGameUpload.files || pendingGameUpload.files.length === 0) {
+          showToast('لطفاً فایل بازی (ZIP یا HTML) را انتخاب کنید.', 'error');
+          return;
+        }
+
+        // Add files to pending commit queue
+        pendingGameUpload.files.forEach(f => {
+          pendingFilesToCommit.push({
+            path: `games/${newId}/${f.relativeName.replace(/\\/g, '/')}`,
+            content: f.base64,
+            isBinary: true
+          });
+        });
+
+        gameUrl = `games/${newId}/${pendingGameUpload.entryFile}`;
+      } else {
+        gameUrl = document.getElementById('modal-game-url').value.trim();
+        if (!gameUrl) {
+          showToast('آدرس لینک خارجی بازی را وارد کنید.', 'error');
+          return;
+        }
+      }
+
+      siteData.games.unshift({
+        id: newId,
+        title,
+        desc,
+        icon,
+        tapeColor,
+        url: gameUrl,
+        isSample: false,
+        createdAt: new Date().toISOString()
+      });
+
+      showToast('بازی جدید اضافه شد.', 'success');
+    }
+
+    document.getElementById('games-count-badge').textContent = siteData.games.length;
+    renderGamesList();
+    markUnsaved();
+    closeGameModal();
+  }
+
+  function editGame(id) {
+    const game = siteData.games.find(g => g.id === id);
+    if (!game) return;
+
+    document.getElementById('game-modal-title').textContent = 'ویرایش بازی: ' + game.title;
+    document.getElementById('modal-game-id').value = game.id;
+    document.getElementById('modal-game-title').value = game.title;
+    document.getElementById('modal-game-desc').value = game.desc || '';
+    document.getElementById('modal-game-icon').value = game.icon || '🎮';
+    document.getElementById('modal-game-tape').value = game.tapeColor || 'blue';
+
+    if (game.url && game.url.startsWith('http')) {
+      document.querySelector('input[name="game-source-type"][value="url"]').checked = true;
+      document.getElementById('modal-game-url').value = game.url;
+    } else {
+      document.querySelector('input[name="game-source-type"][value="upload"]').checked = true;
+      document.getElementById('file-drop-text').textContent = 'فایل‌های بازی قبلاً بارگذاری شده است. (در صورت نیاز به تغییر، فایل جدید انتخاب کنید)';
+    }
+    toggleGameSourceInputs();
+
+    document.getElementById('game-modal').classList.add('active');
+  }
+
+  function deleteGame(id) {
+    const game = siteData.games.find(g => g.id === id);
+    if (!game) return;
+
+    if (confirm(`آیا از حذف بازی "${game.title}" اطمینان دارید؟`)) {
+      siteData.games = siteData.games.filter(g => g.id !== id);
+      document.getElementById('games-count-badge').textContent = siteData.games.length;
+      renderGamesList();
+      markUnsaved();
+      showToast(`بازی "${game.title}" حذف شد.`, 'info');
+    }
+  }
+
+  // ----------------- PUBLISH TO GITHUB (GIT DATA API) -----------------
+  function markUnsaved() {
+    hasUnsavedChanges = true;
+    document.getElementById('unsaved-indicator').style.display = 'inline-block';
+    updatePublishSummary();
+  }
+
+  function updatePublishSummary() {
+    const listEl = document.getElementById('publish-changes-list');
+    if (!siteData) return;
+
+    const pendingUploadsCount = pendingFilesToCommit.length + (pendingAvatarUpload ? 1 : 0);
+    listEl.innerHTML = `
+      <li>تعداد کل بازی‌های فعال در سایت: <strong>${siteData.games?.length || 0} بازی</strong></li>
+      <li>فایل‌های جدید آماده برای بارگذاری به گیت‌هاب: <strong>${pendingUploadsCount} فایل</strong></li>
+      <li>وضعیت متون و محتوا: <strong>${hasUnsavedChanges ? 'تغییرات محلی آماده انتشار' : 'همگام با گیت‌هاب'}</strong></li>
+      <li>مخزن مقصد: <strong>${authConfig ? authConfig.owner + '/' + authConfig.repo : '---'}</strong></li>
+    `;
+  }
+
+  async function startPublishWorkflow() {
+    if (!authConfig) {
+      showToast('خطا: ابتدا وارد حساب گیت‌هاب شوید.', 'error');
+      return;
+    }
+
+    const deployBtn = document.getElementById('btn-deploy-now');
+    const progressBox = document.getElementById('deploy-progress-box');
+    const resultBox = document.getElementById('deploy-result');
+
+    deployBtn.disabled = true;
+    progressBox.style.display = 'block';
+    resultBox.style.display = 'none';
+
+    resetStepsUI();
+
+    try {
+      // مرحله ۱: دریافت آخرین کامیت و Tree شاخه main
+      setStepState(1, 'active');
+      const branchUrl = `https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/git/refs/heads/${authConfig.branch || 'main'}`;
+      const branchRes = await fetch(branchUrl, {
+        headers: {
+          'Authorization': `Bearer ${authConfig.token}`,
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      });
+      if (!branchRes.ok) throw new Error('خطا در دریافت شاخه اصلی ریپازیتوری');
+      const branchData = await branchRes.json();
+      const latestCommitSha = branchData.object.sha;
+
+      const commitRes = await fetch(`https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/git/commits/${latestCommitSha}`, {
+        headers: {
+          'Authorization': `Bearer ${authConfig.token}`,
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      });
+      if (!commitRes.ok) throw new Error('خطا در دریافت درخت کامیت فعلی');
+      const commitData = await commitRes.json();
+      const baseTreeSha = commitData.tree.sha;
+      setStepState(1, 'done');
+
+      // مرحله ۲: ساخت Blob برای فایل‌های تغییریافته
+      setStepState(2, 'active');
+      const treeEntries = [];
+
+      // ۲.۱ ساخت Blob برای site-data.json
+      const siteDataJsonStr = JSON.stringify(siteData, null, 2);
+      const siteDataBlobSha = await createGitBlob(utf8ToBase64(siteDataJsonStr));
+      treeEntries.push({
+        path: 'site-data.json',
+        mode: '100644',
+        type: 'blob',
+        sha: siteDataBlobSha
+      });
+
+      // ۲.۲ بازتولید فایل استاتیک index.html و ثبت در کامیت
+      const generatedIndexHtml = generateStaticIndexHtml(siteData);
+      const indexBlobSha = await createGitBlob(utf8ToBase64(generatedIndexHtml));
+      treeEntries.push({
+        path: 'index.html',
+        mode: '100644',
+        type: 'blob',
+        sha: indexBlobSha
+      });
+
+      // ۲.۳ ارسال عکس آواتار در صورت وجود
+      if (pendingAvatarUpload) {
+        const avatarBlobSha = await createGitBlob(pendingAvatarUpload.content);
+        treeEntries.push({
+          path: pendingAvatarUpload.path,
+          mode: '100644',
+          type: 'blob',
+          sha: avatarBlobSha
+        });
+      }
+
+      // ۲.۴ ارسال فایل‌های بازی‌های جدید
+      for (const f of pendingFilesToCommit) {
+        const blobSha = await createGitBlob(f.content);
+        treeEntries.push({
+          path: f.path,
+          mode: '100644',
+          type: 'blob',
+          sha: blobSha
+        });
+      }
+      setStepState(2, 'done');
+
+      // مرحله ۳: ساخت درخت (Tree) جدید
+      setStepState(3, 'active');
+      const createTreeRes = await fetch(`https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/git/trees`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${authConfig.token}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          base_tree: baseTreeSha,
+          tree: treeEntries
+        })
+      });
+      if (!createTreeRes.ok) {
+        const errJson = await createTreeRes.json();
+        throw new Error('خطا در ساخت درخت فایل‌ها: ' + (errJson.message || ''));
+      }
+      const newTreeData = await createTreeRes.json();
+      const newTreeSha = newTreeData.sha;
+      setStepState(3, 'done');
+
+      // مرحله ۴: ایجاد کامیت و بروزرسانی ریفرنس شاخه
+      setStepState(4, 'active');
+      const commitMsg = `به‌روزرسانی محتوا و بازی‌ها از پنل ادمین - ${new Date().toLocaleDateString('fa-IR')}`;
+      const authorName = siteData.gitConfig?.authorName || 'فاطمه یعقوبی';
+      const authorEmail = siteData.gitConfig?.authorEmail || 'teacher@fatemeyaqoubi.ir';
+
+      const createCommitRes = await fetch(`https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/git/commits`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${authConfig.token}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: commitMsg,
+          tree: newTreeSha,
+          parents: [latestCommitSha],
+          author: {
+            name: authorName,
+            email: authorEmail,
+            date: new Date().toISOString()
+          }
+        })
+      });
+      if (!createCommitRes.ok) throw new Error('خطا در ثبت کامیت جدید در گیت‌هاب');
+      const newCommitData = await createCommitRes.json();
+      const newCommitSha = newCommitData.sha;
+
+      // به‌روزرسانی شاخه
+      const updateRefRes = await fetch(branchUrl, {
+        method: 'PATCH',
+        headers: {
+          'Authorization': `Bearer ${authConfig.token}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          sha: newCommitSha,
+          force: false
+        })
+      });
+      if (!updateRefRes.ok) {
+        const errDetail = await updateRefRes.text();
+        console.error('Update ref failed:', updateRefRes.status, errDetail);
+        throw new Error(`خطا در ارسال تغییرات به شاخه اصلی (${updateRefRes.status})`);
+      }
+      setStepState(4, 'done');
+
+      // پاک‌سازی صف آپلود
+      pendingFilesToCommit = [];
+      pendingAvatarUpload = null;
+      hasUnsavedChanges = false;
+      document.getElementById('unsaved-indicator').style.display = 'none';
+      updatePublishSummary();
+
+      resultBox.style.display = 'block';
+      resultBox.innerHTML = `
+        <div style="padding:16px; background:#ECFDF5; border:1.5px solid #10B981; border-radius:10px; color:#065F46;">
+          <h4 style="margin:0 0 6px; font-size:1.1rem;">🎉 انتشار با موفقیت کامل انجام شد!</h4>
+          <p style="margin:0 0 10px; font-size:0.9rem;">
+            کامیت <code>${newCommitSha.substring(0, 7)}</code> در گیت‌هاب ثبت گردید. تغییرات ظرف حدود ۱ الی ۲ دقیقه روی GitHub Pages منتشر خواهند شد.
+          </p>
+          <a href="https://github.com/${authConfig.owner}/${authConfig.repo}/commit/${newCommitSha}" target="_blank" class="btn btn-outline btn-sm">
+            🔗 مشاهده کامیت در GitHub
+          </a>
+        </div>
+      `;
+      showToast('تغییرات با موفقیت در گیت‌هاب منتشر شد!', 'success');
+
+    } catch (err) {
+      console.error('Publish error:', err);
+      resultBox.style.display = 'block';
+      resultBox.innerHTML = `
+        <div style="padding:16px; background:#FEF2F2; border:1.5px solid #EF4444; border-radius:10px; color:#991B1B;">
+          <h4 style="margin:0 0 6px;">❌ خطا در فرآیند انتشار:</h4>
+          <p style="margin:0;">${escapeHtml(err.message)}</p>
+        </div>
+      `;
+      showToast('خطا در انتشار: ' + err.message, 'error');
+    } finally {
+      deployBtn.disabled = false;
+    }
+  }
+
+  async function createGitBlob(base64Content) {
+    const res = await fetch(`https://api.github.com/repos/${authConfig.owner}/${authConfig.repo}/git/blobs`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${authConfig.token}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: base64Content,
+        encoding: 'base64'
+      })
+    });
+    if (!res.ok) throw new Error('خطا در ایجاد باینری در گیت‌هاب');
+    const data = await res.json();
+    return data.sha;
+  }
+
+  function resetStepsUI() {
+    for (let i = 1; i <= 4; i++) {
+      const el = document.getElementById(`step-${i}`);
+      el.className = 'deploy-step';
+    }
+  }
+
+  function setStepState(stepNum, state) {
+    const el = document.getElementById(`step-${stepNum}`);
+    if (state === 'active') {
+      el.className = 'deploy-step active';
+      el.innerHTML = `<div class="deploy-spinner"></div>` + el.innerHTML.replace(/<div class="deploy-spinner"><\/div>/g, '').replace(/✅/g, '');
+    } else if (state === 'done') {
+      el.className = 'deploy-step done';
+      el.innerHTML = `<span>✅</span> ` + el.innerText.replace(/^[0-9]\.\s*/, '');
+    }
+  }
+
+  // ----------------- SETTINGS & BACKUP -----------------
+  function saveGitSettings() {
+    if (!siteData) return;
+    if (!siteData.gitConfig) siteData.gitConfig = {};
+
+    siteData.gitConfig.authorName = document.getElementById('cfg-author-name').value.trim();
+    siteData.gitConfig.authorEmail = document.getElementById('cfg-author-email').value.trim();
+
+    const owner = document.getElementById('cfg-owner').value.trim();
+    const repo = document.getElementById('cfg-repo').value.trim();
+    const branch = document.getElementById('cfg-branch').value.trim();
+
+    authConfig.owner = owner;
+    authConfig.repo = repo;
+    authConfig.branch = branch;
+    localStorage.setItem('fy_admin_auth', JSON.stringify(authConfig));
+
+    document.getElementById('auth-repo-label').textContent = `${owner}/${repo} (${branch})`;
+    markUnsaved();
+    showToast('تنظیمات مخزن ذخیره شد.', 'success');
+  }
+
+  function downloadBackupJson() {
+    if (!siteData) return;
+    const blob = new Blob([JSON.stringify(siteData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `site-data-backup-${new Date().toISOString().slice(0,10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('فایل پشتیبان دانلود شد.', 'success');
+  }
+
+  // ----------------- STATIC HTML GENERATOR (FOR INDEX.HTML) -----------------
+  function generateStaticIndexHtml(data) {
+    const title = data.pageTitle || 'وب‌سایت آموزشی خانم فاطمه یعقوبی';
+    const metaDesc = data.metaDescription || '';
+    const faviconEmoji = data.favicon?.value || '🎒';
+    const teacherName = data.hero?.teacherName || 'خانم فاطمه یعقوبی';
+    const role = data.hero?.role || 'آموزگار پایه ابتدایی و طراح بازی‌های یادگیری';
+    const bio = data.hero?.bio || 'به کلاس درس مجازی من خوش آمدید! در اینجا با بازی و شادی، مفاهیم درسی را با هم تمرین می‌کنیم.';
+    const gamesTitle = data.gamesSection?.title || 'بازی‌هایی که طراحی کرده‌ام';
+    const gamesSubtitle = data.gamesSection?.subtitle || 'روی هر کارت کلیک کنید تا بازی در یک صفحه‌ی جدید باز شود.';
+    const footerText = data.footer?.text || 'طراحی شده با عشق برای یادگیری کودکان ایران زمین ❤️';
+
+    let avatarMarkup = '';
+    if (data.hero?.avatarType === 'image' && data.hero?.avatarUrl) {
+      avatarMarkup = `<div class="avatar-photo-wrap"><img src="${data.hero.avatarUrl}" alt="${escapeHtml(teacherName)}" class="avatar-photo"></div>`;
+    } else {
+      avatarMarkup = `
+      <svg class="avatar" viewBox="0 0 150 150" role="img" aria-label="تصویر نمادین آموزگار">
+        <circle cx="75" cy="75" r="72" fill="#FBF3E3" stroke="#F3A712" stroke-width="3"/>
+        <circle cx="75" cy="60" r="26" fill="#E4572E"/>
+        <path d="M30 128 q45 -42 90 0 z" fill="#2D82B7"/>
+        <circle cx="75" cy="60" r="26" fill="none" stroke="#2E4B41" stroke-width="2"/>
+      </svg>`;
+    }
+
+    let gamesMarkup = '';
+    if (data.games && data.games.length > 0) {
+      gamesMarkup = data.games.map(g => {
+        const isImg = g.icon && (g.icon.startsWith('http') || g.icon.startsWith('uploads/'));
+        const iconHtml = isImg ? `<img src="${g.icon}" alt="" style="width:36px;height:36px;object-fit:contain;">` : `<span>${g.icon || '🎮'}</span>`;
+        return `
+    <a class="game-card" href="${g.url || '#'}" target="_blank" rel="noopener">
+      <span class="tape"></span>
+      <div class="icon-badge">${iconHtml}</div>
+      <h3 class="game-title">${escapeHtml(g.title || '')}</h3>
+      <p class="game-desc">${escapeHtml(g.desc || '')}</p>
+      <span class="play-hint">شروع بازی ←</span>
+    </a>`;
+      }).join('\n');
+    } else {
+      gamesMarkup = `
+    <div style="grid-column: 1 / -1; text-align: center; padding: 48px 20px; background: #FFFDF6; border: 2px dashed #D8C79E; border-radius: 14px;">
+      <div style="font-size: 3rem; margin-bottom: 12px;">🎒✨</div>
+      <h3 style="color: var(--chalk-green-dark); margin: 0 0 8px;">به زودی بازی‌های جدید اضافه خواهند شد!</h3>
+      <p style="color: var(--ink-soft); margin: 0;">آموزگار در حال طراحی و بارگذاری بازی‌های آموزشی جدید است.</p>
+    </div>`;
+    }
+
+    return `<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${escapeHtml(title)}</title>
+<meta name="description" content="${escapeHtml(metaDesc)}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><text y='50%' x='50%' text-anchor='middle' dominant-baseline='middle' font-size='54'>${faviconEmoji}</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF3E3;
+    --paper-line:#E9DCC2;
+    --ink:#2E2A26;
+    --ink-soft:#5B5348;
+    --chalk-green:#2E4B41;
+    --chalk-green-dark:#233A32;
+    --coral:#E4572E;
+    --blue:#2D82B7;
+    --yellow:#F3A712;
+    --cream:#FBF3E3;
+    --radius-card: 14px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    background-image:
+      repeating-linear-gradient(var(--paper) 0px, var(--paper) 37px, var(--paper-line) 38px);
+    color:var(--ink);
+    font-family:'Vazirmatn', sans-serif;
+    line-height:1.8;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  ::selection{background:var(--yellow); color:var(--ink);}
+
+  .hero{
+    position:relative;
+    background:var(--chalk-green);
+    background-image: radial-gradient(circle at 15% 20%, rgba(255,255,255,0.05), transparent 40%),
+                       radial-gradient(circle at 85% 80%, rgba(255,255,255,0.04), transparent 45%);
+    color:var(--cream);
+    padding:64px 24px 88px;
+    overflow:hidden;
+  }
+
+  .hero-doodles{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:0.55;
+  }
+
+  .hero-inner{
+    max-width:920px;
+    margin:0 auto;
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:40px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .avatar-wrap{ flex:0 0 auto; }
+  .avatar{ width:150px; height:150px; display:block; }
+  .avatar-photo-wrap{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    overflow:hidden;
+    border:4px solid var(--yellow);
+    box-shadow:0 8px 24px rgba(0,0,0,0.25);
+    background:var(--cream);
+  }
+  .avatar-photo{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  .hero-text{ flex:1 1 320px; min-width:260px; text-align:right; }
+
+  .eyebrow-name{
+    font-family:'Lalezar', 'Vazirmatn', sans-serif;
+    font-size:clamp(2.2rem, 5vw, 3.1rem);
+    margin:0 0 6px;
+    color:#FDF9EF;
+    letter-spacing:0.5px;
+    position:relative;
+    display:inline-block;
+  }
+
+  .role{ font-size:1.05rem; color:var(--yellow); font-weight:700; margin:0 0 16px; }
+  .bio{ max-width:52ch; font-size:1.02rem; color:#EDE6D6; margin:0; white-space:pre-line; }
+  .underline-swash{ display:block; width:min(340px, 60vw); height:14px; margin:6px 0 0; }
+
+  .games-section{ max-width:1040px; margin:0 auto; padding:64px 24px 90px; }
+  .section-head{ text-align:center; margin-bottom:48px; }
+  .section-head h2{ font-family:'Lalezar', 'Vazirmatn', sans-serif; font-size:clamp(1.9rem, 4vw, 2.5rem); margin:0 0 8px; color:var(--chalk-green-dark); }
+  .section-head p{ margin:0; color:var(--ink-soft); font-size:1.02rem; }
+
+  .games-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:28px; }
+
+  .game-card{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    background:#FFFDF6;
+    border:2px dashed #D8C79E;
+    border-radius:var(--radius-card);
+    padding:26px 20px 22px;
+    color:var(--ink);
+    transition:transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    box-shadow:0 3px 0 rgba(46,38,26,0.06);
+    transform:rotate(var(--tilt, 0deg));
+  }
+  .game-card:hover, .game-card:focus-visible{
+    transform:rotate(0deg) translateY(-4px);
+    border-color:var(--coral);
+    box-shadow:0 10px 22px rgba(46,38,26,0.14);
+  }
+
+  .tape{
+    position:absolute;
+    top:-10px;
+    right:24px;
+    width:52px;
+    height:22px;
+    border-radius:2px;
+    opacity:0.9;
+    transform:rotate(-4deg);
+  }
+  .game-card:nth-child(4n+1) .tape{ background:rgba(228,87,46,0.55); }
+  .game-card:nth-child(4n+2) .tape{ background:rgba(45,130,183,0.55); }
+  .game-card:nth-child(4n+3) .tape{ background:rgba(243,167,18,0.6); }
+  .game-card:nth-child(4n+4) .tape{ background:rgba(46,75,65,0.4); }
+
+  .icon-badge{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.7rem;
+    background:var(--cream);
+    border:2px solid var(--chalk-green);
+    flex-shrink:0;
+    overflow:hidden;
+  }
+
+  .game-title{ font-size:1.12rem; font-weight:700; margin:0; color:var(--chalk-green-dark); }
+  .game-desc{ font-size:0.92rem; color:var(--ink-soft); margin:0; }
+  .play-hint{ margin-top:auto; padding-top:10px; font-size:0.85rem; font-weight:700; color:var(--coral); display:flex; align-items:center; gap:6px; }
+
+  .footer{
+    text-align:center;
+    padding:30px 20px 46px;
+    color:var(--ink-soft);
+    font-size:0.88rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+  }
+  .admin-link{
+    text-decoration:none;
+    font-size:0.95rem;
+    opacity:0.25;
+    transition:opacity 0.2s ease, transform 0.2s ease;
+    cursor:pointer;
+  }
+  .admin-link:hover{ opacity:0.9; transform:scale(1.2); }
+
+  @media (max-width:520px){
+    .hero{padding:48px 18px 70px;}
+    .hero-inner{flex-direction:column; text-align:center;}
+    .hero-text{text-align:center;}
+    .bio{margin:0 auto;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="hero-doodles" viewBox="0 0 900 400" preserveAspectRatio="none" aria-hidden="true">
+    <g stroke="#F3A712" stroke-width="2" fill="none" stroke-linecap="round">
+      <path d="M60 60 l6 14 l14 2 l-10 10 l2 14 l-12 -7 l-12 7 l2 -14 l-10 -10 l14 -2 z" />
+      <path d="M810 90 l5 12 l12 2 l-9 9 l2 12 l-10 -6 l-10 6 l2 -12 l-9 -9 l12 -2 z" />
+      <circle cx="770" cy="230" r="16" />
+      <circle cx="770" cy="230" r="26" opacity="0.5"/>
+    </g>
+    <g stroke="#EDE6D6" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6">
+      <path d="M40 300 q30 -20 60 0 q30 20 60 0" />
+      <path d="M700 40 q20 -14 40 0 q20 14 40 0" />
+    </g>
+  </svg>
+
+  <div class="hero-inner">
+    <div class="avatar-wrap">
+      ${avatarMarkup}
+    </div>
+    <div class="hero-text">
+      <h1 class="eyebrow-name">${escapeHtml(teacherName)}</h1>
+      <p class="role">${escapeHtml(role)}</p>
+      <svg class="underline-swash" viewBox="0 0 340 14" aria-hidden="true">
+        <path d="M2 8 Q 90 -2, 170 7 T 338 6" stroke="#F3A712" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </svg>
+      <p class="bio">${escapeHtml(bio)}</p>
+    </div>
+  </div>
+</header>
+
+<main class="games-section" id="games">
+  <div class="section-head">
+    <h2>${escapeHtml(gamesTitle)}</h2>
+    <p>${escapeHtml(gamesSubtitle)}</p>
+  </div>
+
+  <div class="games-grid">
+${gamesMarkup}
+  </div>
+</main>
+
+<footer class="footer">
+  <span class="footer-text">${escapeHtml(footerText)}</span>
+  <a href="admin.html" class="admin-link" title="ورود به پنل مدیریت آموزگار" aria-label="پنل مدیریت">🔐</a>
+</footer>
+
+<` + `script>
+  (async function() {
+    try {
+      const res = await fetch('./site-data.json?t=' + Date.now());
+      if (!res.ok) return;
+      const data = await res.json();
+      if (!data) return;
+
+      if (data.pageTitle) document.title = data.pageTitle;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc && data.metaDescription) metaDesc.setAttribute('content', data.metaDescription);
+
+      const nameEl = document.querySelector('.eyebrow-name');
+      if (nameEl && data.hero && data.hero.teacherName) nameEl.textContent = data.hero.teacherName;
+
+      const roleEl = document.querySelector('.role');
+      if (roleEl && data.hero && data.hero.role) roleEl.textContent = data.hero.role;
+
+      const bioEl = document.querySelector('.bio');
+      if (bioEl && data.hero && data.hero.bio) bioEl.textContent = data.hero.bio;
+
+      if (data.hero && data.hero.avatarType === 'image' && data.hero.avatarUrl) {
+        const wrap = document.querySelector('.avatar-wrap');
+        if (wrap) {
+          wrap.innerHTML = \`<div class="avatar-photo-wrap"><img src="\${data.hero.avatarUrl}" alt="\${data.hero.teacherName || ''}" class="avatar-photo"></div>\`;
+        }
+      }
+
+      const sectionTitleEl = document.querySelector('.section-head h2');
+      if (sectionTitleEl && data.gamesSection && data.gamesSection.title) sectionTitleEl.textContent = data.gamesSection.title;
+
+      const sectionSubEl = document.querySelector('.section-head p');
+      if (sectionSubEl && data.gamesSection && data.gamesSection.subtitle) sectionSubEl.textContent = data.gamesSection.subtitle;
+
+      const footerEl = document.querySelector('.footer-text');
+      if (footerEl && data.footer && data.footer.text) footerEl.textContent = data.footer.text;
+
+      if (Array.isArray(data.games)) {
+        const grid = document.querySelector('.games-grid');
+        if (grid) {
+          grid.innerHTML = data.games.map(g => {
+            const isImg = g.icon && (g.icon.startsWith('http') || g.icon.startsWith('/') || g.icon.startsWith('uploads/'));
+            const iconHtml = isImg ? \`<img src="\${g.icon}" alt="" style="width:36px;height:36px;object-fit:contain;">\` : \`<span>\${g.icon || '🎮'}</span>\`;
+            return \`
+              <a class="game-card" href="\${g.url || '#'}" target="_blank" rel="noopener">
+                <span class="tape"></span>
+                <div class="icon-badge">\${iconHtml}</div>
+                <h3 class="game-title">\${g.title || ''}</h3>
+                <p class="game-desc">\${g.desc || ''}</p>
+                <span class="play-hint">شروع بازی ←</span>
+              </a>
+            \`;
+          }).join('');
+        }
+      }
+    } catch(e) { }
+  })();
+<` + `/script>
+</body>
+</html>`;
+  }
+
+  // ----------------- UTILITIES -----------------
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+    document.getElementById(tabId).style.display = 'block';
+    event.currentTarget.classList.add('active');
+
+    if (tabId === 'tab-publish') {
+      updatePublishSummary();
+    }
+  }
+
+  function showToast(message, type = 'info') {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    const icon = type === 'success' ? '✅' : (type === 'error' ? '❌' : 'ℹ️');
+    toast.innerHTML = `<span>${icon}</span> <span>${escapeHtml(message)}</span>`;
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(10px)';
+      toast.style.transition = 'all 0.3s';
+      setTimeout(() => toast.remove(), 300);
+    }, 4500);
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function utf8ToBase64(str) {
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+      return String.fromCharCode(parseInt(p1, 16));
+    }));
+  }
+
+  function b64DecodeUnicode(str) {
+    const clean = str.replace(/\s/g, '');
+    return decodeURIComponent(Array.prototype.map.call(atob(clean), function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+  }
+</script>
+</body>
+</html>

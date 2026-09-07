@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>وب‌سایت آموزشی خانم فاطمه یعقوبی</title>
+<title>وب‌سایت خانم فاطمه یعقوبی</title>
 <meta name="description" content="کلاس آنلاین و بازی‌های تعاملی خانم فاطمه یعقوبی">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,8 +38,14 @@
   }
 
   a{color:inherit; text-decoration:none;}
+
   ::selection{background:var(--yellow); color:var(--ink);}
 
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ---------- HERO / PROFILE ---------- */
   .hero{
     position:relative;
     background:var(--chalk-green);
@@ -68,8 +74,16 @@
     justify-content:center;
   }
 
-  .avatar-wrap{ flex:0 0 auto; }
-  .avatar{ width:150px; height:150px; display:block; }
+  .avatar-wrap{
+    flex:0 0 auto;
+  }
+
+  .avatar{
+    width:150px;
+    height:150px;
+    display:block;
+  }
+
   .avatar-photo-wrap{
     width:150px;
     height:150px;
@@ -79,9 +93,19 @@
     box-shadow:0 8px 24px rgba(0,0,0,0.25);
     background:var(--cream);
   }
-  .avatar-photo{ width:100%; height:100%; object-fit:cover; display:block; }
 
-  .hero-text{ flex:1 1 320px; min-width:260px; text-align:right; }
+  .avatar-photo{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .hero-text{
+    flex:1 1 320px;
+    min-width:260px;
+    text-align:right;
+  }
 
   .eyebrow-name{
     font-family:'Lalezar', 'Vazirmatn', sans-serif;
@@ -93,16 +117,58 @@
     display:inline-block;
   }
 
-  .role{ font-size:1.05rem; color:var(--yellow); font-weight:700; margin:0 0 16px; }
-  .bio{ max-width:52ch; font-size:1.02rem; color:#EDE6D6; margin:0; white-space:pre-line; }
-  .underline-swash{ display:block; width:min(340px, 60vw); height:14px; margin:6px 0 0; }
+  .role{
+    font-size:1.05rem;
+    color:var(--yellow);
+    font-weight:700;
+    margin:0 0 16px;
+  }
 
-  .games-section{ max-width:1040px; margin:0 auto; padding:64px 24px 90px; }
-  .section-head{ text-align:center; margin-bottom:48px; }
-  .section-head h2{ font-family:'Lalezar', 'Vazirmatn', sans-serif; font-size:clamp(1.9rem, 4vw, 2.5rem); margin:0 0 8px; color:var(--chalk-green-dark); }
-  .section-head p{ margin:0; color:var(--ink-soft); font-size:1.02rem; }
+  .bio{
+    max-width:52ch;
+    font-size:1.02rem;
+    color:#EDE6D6;
+    margin:0;
+    white-space:pre-line;
+  }
 
-  .games-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:28px; }
+  .underline-swash{
+    display:block;
+    width:min(340px, 60vw);
+    height:14px;
+    margin:6px 0 0;
+  }
+
+  /* ---------- GAMES SECTION ---------- */
+  .games-section{
+    max-width:1040px;
+    margin:0 auto;
+    padding:64px 24px 90px;
+  }
+
+  .section-head{
+    text-align:center;
+    margin-bottom:44px;
+  }
+
+  .section-head h2{
+    font-family:'Lalezar', 'Vazirmatn', sans-serif;
+    font-size:clamp(1.8rem, 4vw, 2.4rem);
+    color:var(--chalk-green-dark);
+    margin:0 0 8px;
+  }
+
+  .section-head p{
+    color:var(--ink-soft);
+    margin:0;
+    font-size:0.98rem;
+  }
+
+  .games-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));
+    gap:28px;
+  }
 
   .game-card{
     position:relative;
@@ -118,10 +184,24 @@
     box-shadow:0 3px 0 rgba(46,38,26,0.06);
     transform:rotate(var(--tilt, 0deg));
   }
-  .game-card:hover, .game-card:focus-visible{
+
+  .game-card:nth-child(6n+1){ --tilt:-1.2deg; }
+  .game-card:nth-child(6n+2){ --tilt:0.8deg; }
+  .game-card:nth-child(6n+3){ --tilt:-0.6deg; }
+  .game-card:nth-child(6n+4){ --tilt:1.1deg; }
+  .game-card:nth-child(6n+5){ --tilt:-1deg; }
+  .game-card:nth-child(6n+6){ --tilt:0.5deg; }
+
+  .game-card:hover,
+  .game-card:focus-visible{
     transform:rotate(0deg) translateY(-4px);
     border-color:var(--coral);
     box-shadow:0 10px 22px rgba(46,38,26,0.14);
+  }
+
+  .game-card:focus-visible{
+    outline:3px solid var(--blue);
+    outline-offset:3px;
   }
 
   .tape{
@@ -134,6 +214,7 @@
     opacity:0.9;
     transform:rotate(-4deg);
   }
+
   .game-card:nth-child(4n+1) .tape{ background:rgba(228,87,46,0.55); }
   .game-card:nth-child(4n+2) .tape{ background:rgba(45,130,183,0.55); }
   .game-card:nth-child(4n+3) .tape{ background:rgba(243,167,18,0.6); }
@@ -153,9 +234,29 @@
     overflow:hidden;
   }
 
-  .game-title{ font-size:1.12rem; font-weight:700; margin:0; color:var(--chalk-green-dark); }
-  .game-desc{ font-size:0.92rem; color:var(--ink-soft); margin:0; }
-  .play-hint{ margin-top:auto; padding-top:10px; font-size:0.85rem; font-weight:700; color:var(--coral); display:flex; align-items:center; gap:6px; }
+  .game-title{
+    font-size:1.12rem;
+    font-weight:700;
+    margin:0;
+    color:var(--chalk-green-dark);
+  }
+
+  .game-desc{
+    font-size:0.92rem;
+    color:var(--ink-soft);
+    margin:0;
+  }
+
+  .play-hint{
+    margin-top:auto;
+    padding-top:10px;
+    font-size:0.85rem;
+    font-weight:700;
+    color:var(--coral);
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
 
   .footer{
     text-align:center;
@@ -167,6 +268,7 @@
     justify-content:center;
     gap:8px;
   }
+
   .admin-link{
     text-decoration:none;
     font-size:0.95rem;
@@ -174,7 +276,10 @@
     transition:opacity 0.2s ease, transform 0.2s ease;
     cursor:pointer;
   }
-  .admin-link:hover{ opacity:0.9; transform:scale(1.2); }
+  .admin-link:hover{
+    opacity:0.9;
+    transform:scale(1.2);
+  }
 
   @media (max-width:520px){
     .hero{padding:48px 18px 70px;}
@@ -209,10 +314,11 @@
         <path d="M30 128 q45 -42 90 0 z" fill="#2D82B7"/>
         <circle cx="75" cy="60" r="26" fill="none" stroke="#2E4B41" stroke-width="2"/>
       </svg>
+    
     </div>
     <div class="hero-text">
       <h1 class="eyebrow-name">خانم فاطمه یعقوبی</h1>
-      <p class="role">آموزگار رسمی و طراح بازی‌های یادگیری</p>
+      <p class="role">آموزگار پایه ابتدایی و طراح بازی‌های یادگیری</p>
       <svg class="underline-swash" viewBox="0 0 340 14" aria-hidden="true">
         <path d="M2 8 Q 90 -2, 170 7 T 338 6" stroke="#F3A712" stroke-width="4" fill="none" stroke-linecap="round"/>
       </svg>
@@ -339,7 +445,9 @@
           }).join('');
         }
       }
-    } catch(e) { }
+    } catch(e) {
+      // در صورت آفلاین بودن یا عدم دسترسی به جیسون، محتوای استاتیک موجود نمایش می‌یابد
+    }
   })();
 </script>
 </body>
