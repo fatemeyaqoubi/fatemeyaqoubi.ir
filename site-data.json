@@ -1,0 +1,91 @@
+{
+  "pageTitle": "وب‌سایت آموزشی خانم فاطمه یعقوبی",
+  "metaDescription": "کلاس آنلاین و بازی‌های تعاملی خانم فاطمه یعقوبی",
+  "favicon": {
+    "type": "emoji",
+    "value": "🎒"
+  },
+  "hero": {
+    "teacherName": "خانم فاطمه یعقوبی",
+    "role": "آموزگار رسمی و طراح بازی‌های یادگیری",
+    "bio": "به کلاس درس مجازی من خوش آمدید! در اینجا با بازی و شادی، مفاهیم درسی را با هم تمرین می‌کنیم.",
+    "avatarType": "svg",
+    "avatarUrl": ""
+  },
+  "gamesSection": {
+    "title": "بازی‌هایی که طراحی کرده‌ام",
+    "subtitle": "روی هر کارت کلیک کنید تا بازی در یک صفحه‌ی جدید باز شود."
+  },
+  "games": [
+    {
+      "id": "game-1788761310109",
+      "title": "مسابقه ریاضی شاد",
+      "desc": "بازی آموزشی جدول ضرب و جمع اعداد",
+      "icon": "🔢",
+      "tapeColor": "blue",
+      "url": "games/game-1788761310109/index.html",
+      "isSample": false,
+      "createdAt": "2026-09-07T06:08:30.118Z"
+    },
+    {
+      "id": "sample-2",
+      "title": "مسابقه‌ی ریاضی سریع",
+      "icon": "🔢",
+      "desc": "حل سریع جمع و تفریق ساده در مقابل ساعت شنی.",
+      "url": "https://example.com/game/riazi-sari",
+      "tapeColor": "blue",
+      "isSample": true,
+      "createdAt": "2026-09-07T09:00:00.000Z"
+    },
+    {
+      "id": "sample-3",
+      "title": "جورچین اشکال هندسی",
+      "icon": "🔺",
+      "desc": "چیدن شکل‌های رنگی کنار هم برای ساخت تصویرهای جدید.",
+      "url": "https://example.com/game/jorchin-eshkal",
+      "tapeColor": "yellow",
+      "isSample": true,
+      "createdAt": "2026-09-07T09:00:00.000Z"
+    },
+    {
+      "id": "sample-4",
+      "title": "کاشف کلمات",
+      "icon": "🔤",
+      "desc": "پیدا کردن کلمات پنهان در جدول حروف با کمک تصویر راهنما.",
+      "url": "https://example.com/game/kashef-kalamat",
+      "tapeColor": "green",
+      "isSample": true,
+      "createdAt": "2026-09-07T09:00:00.000Z"
+    },
+    {
+      "id": "sample-5",
+      "title": "رنگ‌آمیزی حیوانات",
+      "icon": "🎨",
+      "desc": "رنگ کردن نقاشی حیوانات و آشنایی با نام آن‌ها به فارسی.",
+      "url": "https://example.com/game/rang-amizi-heyvanat",
+      "tapeColor": "coral",
+      "isSample": true,
+      "createdAt": "2026-09-07T09:00:00.000Z"
+    },
+    {
+      "id": "sample-6",
+      "title": "بازی زمان و ساعت",
+      "icon": "⏰",
+      "desc": "خواندن عقربه‌های ساعت و تمرین گفتن زمان به فارسی.",
+      "url": "https://example.com/game/zaman-o-saat",
+      "tapeColor": "blue",
+      "isSample": true,
+      "createdAt": "2026-09-07T09:00:00.000Z"
+    }
+  ],
+  "footer": {
+    "text": "طراحی شده با عشق برای یادگیری کودکان ایران زمین ❤️"
+  },
+  "gitConfig": {
+    "owner": "fatemeyaqoubi",
+    "repo": "fatemeyaqoubi.ir",
+    "branch": "main",
+    "authorName": "فاطمه یعقوبی",
+    "authorEmail": "teacher@fatemeyaqoubi.ir"
+  }
+}

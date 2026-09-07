@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>وب‌سایت خانم فاطمه یعقوبی</title>
+<title>وب‌سایت آموزشی خانم فاطمه یعقوبی</title>
 <meta name="description" content="کلاس آنلاین و بازی‌های تعاملی خانم فاطمه یعقوبی">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,14 +38,8 @@
   }
 
   a{color:inherit; text-decoration:none;}
-
   ::selection{background:var(--yellow); color:var(--ink);}
 
-  @media (prefers-reduced-motion: reduce){
-    *{animation:none !important; transition:none !important;}
-  }
-
-  /* ---------- HERO / PROFILE ---------- */
   .hero{
     position:relative;
     background:var(--chalk-green);
@@ -74,16 +68,8 @@
     justify-content:center;
   }
 
-  .avatar-wrap{
-    flex:0 0 auto;
-  }
-
-  .avatar{
-    width:150px;
-    height:150px;
-    display:block;
-  }
-
+  .avatar-wrap{ flex:0 0 auto; }
+  .avatar{ width:150px; height:150px; display:block; }
   .avatar-photo-wrap{
     width:150px;
     height:150px;
@@ -93,19 +79,9 @@
     box-shadow:0 8px 24px rgba(0,0,0,0.25);
     background:var(--cream);
   }
+  .avatar-photo{ width:100%; height:100%; object-fit:cover; display:block; }
 
-  .avatar-photo{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-  }
-
-  .hero-text{
-    flex:1 1 320px;
-    min-width:260px;
-    text-align:right;
-  }
+  .hero-text{ flex:1 1 320px; min-width:260px; text-align:right; }
 
   .eyebrow-name{
     font-family:'Lalezar', 'Vazirmatn', sans-serif;
@@ -117,58 +93,16 @@
     display:inline-block;
   }
 
-  .role{
-    font-size:1.05rem;
-    color:var(--yellow);
-    font-weight:700;
-    margin:0 0 16px;
-  }
+  .role{ font-size:1.05rem; color:var(--yellow); font-weight:700; margin:0 0 16px; }
+  .bio{ max-width:52ch; font-size:1.02rem; color:#EDE6D6; margin:0; white-space:pre-line; }
+  .underline-swash{ display:block; width:min(340px, 60vw); height:14px; margin:6px 0 0; }
 
-  .bio{
-    max-width:52ch;
-    font-size:1.02rem;
-    color:#EDE6D6;
-    margin:0;
-    white-space:pre-line;
-  }
+  .games-section{ max-width:1040px; margin:0 auto; padding:64px 24px 90px; }
+  .section-head{ text-align:center; margin-bottom:48px; }
+  .section-head h2{ font-family:'Lalezar', 'Vazirmatn', sans-serif; font-size:clamp(1.9rem, 4vw, 2.5rem); margin:0 0 8px; color:var(--chalk-green-dark); }
+  .section-head p{ margin:0; color:var(--ink-soft); font-size:1.02rem; }
 
-  .underline-swash{
-    display:block;
-    width:min(340px, 60vw);
-    height:14px;
-    margin:6px 0 0;
-  }
-
-  /* ---------- GAMES SECTION ---------- */
-  .games-section{
-    max-width:1040px;
-    margin:0 auto;
-    padding:64px 24px 90px;
-  }
-
-  .section-head{
-    text-align:center;
-    margin-bottom:44px;
-  }
-
-  .section-head h2{
-    font-family:'Lalezar', 'Vazirmatn', sans-serif;
-    font-size:clamp(1.8rem, 4vw, 2.4rem);
-    color:var(--chalk-green-dark);
-    margin:0 0 8px;
-  }
-
-  .section-head p{
-    color:var(--ink-soft);
-    margin:0;
-    font-size:0.98rem;
-  }
-
-  .games-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));
-    gap:28px;
-  }
+  .games-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:28px; }
 
   .game-card{
     position:relative;
@@ -184,24 +118,10 @@
     box-shadow:0 3px 0 rgba(46,38,26,0.06);
     transform:rotate(var(--tilt, 0deg));
   }
-
-  .game-card:nth-child(6n+1){ --tilt:-1.2deg; }
-  .game-card:nth-child(6n+2){ --tilt:0.8deg; }
-  .game-card:nth-child(6n+3){ --tilt:-0.6deg; }
-  .game-card:nth-child(6n+4){ --tilt:1.1deg; }
-  .game-card:nth-child(6n+5){ --tilt:-1deg; }
-  .game-card:nth-child(6n+6){ --tilt:0.5deg; }
-
-  .game-card:hover,
-  .game-card:focus-visible{
+  .game-card:hover, .game-card:focus-visible{
     transform:rotate(0deg) translateY(-4px);
     border-color:var(--coral);
     box-shadow:0 10px 22px rgba(46,38,26,0.14);
-  }
-
-  .game-card:focus-visible{
-    outline:3px solid var(--blue);
-    outline-offset:3px;
   }
 
   .tape{
@@ -214,7 +134,6 @@
     opacity:0.9;
     transform:rotate(-4deg);
   }
-
   .game-card:nth-child(4n+1) .tape{ background:rgba(228,87,46,0.55); }
   .game-card:nth-child(4n+2) .tape{ background:rgba(45,130,183,0.55); }
   .game-card:nth-child(4n+3) .tape{ background:rgba(243,167,18,0.6); }
@@ -234,36 +153,28 @@
     overflow:hidden;
   }
 
-  .game-title{
-    font-size:1.12rem;
-    font-weight:700;
-    margin:0;
-    color:var(--chalk-green-dark);
-  }
-
-  .game-desc{
-    font-size:0.92rem;
-    color:var(--ink-soft);
-    margin:0;
-  }
-
-  .play-hint{
-    margin-top:auto;
-    padding-top:10px;
-    font-size:0.85rem;
-    font-weight:700;
-    color:var(--coral);
-    display:flex;
-    align-items:center;
-    gap:6px;
-  }
+  .game-title{ font-size:1.12rem; font-weight:700; margin:0; color:var(--chalk-green-dark); }
+  .game-desc{ font-size:0.92rem; color:var(--ink-soft); margin:0; }
+  .play-hint{ margin-top:auto; padding-top:10px; font-size:0.85rem; font-weight:700; color:var(--coral); display:flex; align-items:center; gap:6px; }
 
   .footer{
     text-align:center;
     padding:30px 20px 46px;
     color:var(--ink-soft);
     font-size:0.88rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
   }
+  .admin-link{
+    text-decoration:none;
+    font-size:0.95rem;
+    opacity:0.25;
+    transition:opacity 0.2s ease, transform 0.2s ease;
+    cursor:pointer;
+  }
+  .admin-link:hover{ opacity:0.9; transform:scale(1.2); }
 
   @media (max-width:520px){
     .hero{padding:48px 18px 70px;}
@@ -298,11 +209,10 @@
         <path d="M30 128 q45 -42 90 0 z" fill="#2D82B7"/>
         <circle cx="75" cy="60" r="26" fill="none" stroke="#2E4B41" stroke-width="2"/>
       </svg>
-    
     </div>
     <div class="hero-text">
       <h1 class="eyebrow-name">خانم فاطمه یعقوبی</h1>
-      <p class="role">آموزگار پایه ابتدایی و طراح بازی‌های یادگیری</p>
+      <p class="role">آموزگار رسمی و طراح بازی‌های یادگیری</p>
       <svg class="underline-swash" viewBox="0 0 340 14" aria-hidden="true">
         <path d="M2 8 Q 90 -2, 170 7 T 338 6" stroke="#F3A712" stroke-width="4" fill="none" stroke-linecap="round"/>
       </svg>
@@ -370,8 +280,67 @@
 </main>
 
 <footer class="footer">
-  طراحی شده با عشق برای یادگیری کودکان ایران زمین ❤️
+  <span class="footer-text">طراحی شده با عشق برای یادگیری کودکان ایران زمین ❤️</span>
+  <a href="admin.html" class="admin-link" title="ورود به پنل مدیریت آموزگار" aria-label="پنل مدیریت">🔐</a>
 </footer>
 
+<script>
+  (async function() {
+    try {
+      const res = await fetch('./site-data.json?t=' + Date.now());
+      if (!res.ok) return;
+      const data = await res.json();
+      if (!data) return;
+
+      if (data.pageTitle) document.title = data.pageTitle;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc && data.metaDescription) metaDesc.setAttribute('content', data.metaDescription);
+
+      const nameEl = document.querySelector('.eyebrow-name');
+      if (nameEl && data.hero && data.hero.teacherName) nameEl.textContent = data.hero.teacherName;
+
+      const roleEl = document.querySelector('.role');
+      if (roleEl && data.hero && data.hero.role) roleEl.textContent = data.hero.role;
+
+      const bioEl = document.querySelector('.bio');
+      if (bioEl && data.hero && data.hero.bio) bioEl.textContent = data.hero.bio;
+
+      if (data.hero && data.hero.avatarType === 'image' && data.hero.avatarUrl) {
+        const wrap = document.querySelector('.avatar-wrap');
+        if (wrap) {
+          wrap.innerHTML = `<div class="avatar-photo-wrap"><img src="${data.hero.avatarUrl}" alt="${data.hero.teacherName || ''}" class="avatar-photo"></div>`;
+        }
+      }
+
+      const sectionTitleEl = document.querySelector('.section-head h2');
+      if (sectionTitleEl && data.gamesSection && data.gamesSection.title) sectionTitleEl.textContent = data.gamesSection.title;
+
+      const sectionSubEl = document.querySelector('.section-head p');
+      if (sectionSubEl && data.gamesSection && data.gamesSection.subtitle) sectionSubEl.textContent = data.gamesSection.subtitle;
+
+      const footerEl = document.querySelector('.footer-text');
+      if (footerEl && data.footer && data.footer.text) footerEl.textContent = data.footer.text;
+
+      if (Array.isArray(data.games)) {
+        const grid = document.querySelector('.games-grid');
+        if (grid) {
+          grid.innerHTML = data.games.map(g => {
+            const isImg = g.icon && (g.icon.startsWith('http') || g.icon.startsWith('/') || g.icon.startsWith('uploads/'));
+            const iconHtml = isImg ? `<img src="${g.icon}" alt="" style="width:36px;height:36px;object-fit:contain;">` : `<span>${g.icon || '🎮'}</span>`;
+            return `
+              <a class="game-card" href="${g.url || '#'}" target="_blank" rel="noopener">
+                <span class="tape"></span>
+                <div class="icon-badge">${iconHtml}</div>
+                <h3 class="game-title">${g.title || ''}</h3>
+                <p class="game-desc">${g.desc || ''}</p>
+                <span class="play-hint">شروع بازی ←</span>
+              </a>
+            `;
+          }).join('');
+        }
+      }
+    } catch(e) { }
+  })();
+</script>
 </body>
 </html>
